@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   Phone, 
   Mail, 
@@ -34,24 +35,52 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Validate form data
+      if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || 
+          !formData.checkIn || !formData.checkOut || !formData.guests) {
+        throw new Error("Please fill in all required fields");
+      }
 
-    toast({
-      title: "Inquiry Sent!",
-      description: "We'll get back to you within 24 hours. Thank you for your interest!",
-    });
+      // Call edge function to send emails and store inquiry
+      const { data, error } = await supabase.functions.invoke("send-booking-inquiry", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          checkIn: formData.checkIn,
+          checkOut: formData.checkOut,
+          guests: parseInt(formData.guests),
+          message: formData.message.trim() || undefined,
+        },
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      checkIn: "",
-      checkOut: "",
-      guests: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      if (error) throw error;
+
+      toast({
+        title: "Inquiry Sent Successfully! ✨",
+        description: "Check your email for confirmation. We'll respond within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        checkIn: "",
+        checkOut: "",
+        guests: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.error("Error submitting inquiry:", error);
+      toast({
+        title: "Something went wrong",
+        description: error.message || "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
