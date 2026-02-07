@@ -64,15 +64,15 @@ export const Footer = () => {
                 <span>+91 93172 24562</span>
               </a>
               <a
-                href="mailto:thewoodpeckerinn@gmail.com"
+                href="mailto:support@thewoodpeckerinn.in"
                 className="flex items-start gap-3 text-snow/70 hover:text-snow transition-colors text-sm group"
               >
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>thewoodpeckerinn@gmail.com</span>
+                <span>support@thewoodpeckerinn.in</span>
               </a>
               <div className="flex items-start gap-3 text-snow/70 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Jibhi Valley, Banjar<br />Kullu, Himachal Pradesh<br />India - 175123</span>
+                <span>VPO Jibhi, Road, Gadagushaini<br />Jibhi, Himachal Pradesh 175123</span>
               </div>
             </div>
           </div>

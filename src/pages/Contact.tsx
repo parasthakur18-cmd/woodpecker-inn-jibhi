@@ -167,7 +167,7 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href="mailto:thewoodpeckerinn@gmail.com"
+                  href="mailto:support@thewoodpeckerinn.in"
                   className="flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-full bg-pine/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pine/20 transition-colors">
@@ -175,7 +175,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-heading font-medium text-pine mb-1">Email</h3>
-                    <p className="text-muted-foreground">thewoodpeckerinn@gmail.com</p>
+                    <p className="text-muted-foreground">support@thewoodpeckerinn.in</p>
                     <p className="text-sm text-muted-foreground/70">We respond within 24 hours</p>
                   </div>
                 </a>
@@ -202,9 +202,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-heading font-medium text-pine mb-1">Location</h3>
-                    <p className="text-muted-foreground">Jibhi Valley, Banjar</p>
-                    <p className="text-muted-foreground">Kullu, Himachal Pradesh</p>
-                    <p className="text-muted-foreground">India - 175123</p>
+                    <p className="text-muted-foreground">VPO Jibhi, Road, Gadagushaini</p>
+                    <p className="text-muted-foreground">Jibhi, Himachal Pradesh 175123</p>
                   </div>
                 </div>
               </div>
