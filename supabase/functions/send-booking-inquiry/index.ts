@@ -88,7 +88,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email notification to the hotel
     const emailResponse = await resend.emails.send({
       from: "The Woodpecker Inn <onboarding@resend.dev>", // Use your verified domain
-      to: ["thewoodpeckerinn@gmail.com"],
+      to: ["support@thewoodpeckerinn.in"],
       reply_to: email,
       subject: `New Booking Inquiry from ${name}`,
       html: `
@@ -150,8 +150,8 @@ const handler = async (req: Request): Promise<Response> => {
               </a>
             </div>
             <div class="footer">
-              <p>The Woodpecker Inn, Jibhi Valley</p>
-              <p>Inquiry ID: ${dbData.id}</p>
+              <p>The Woodpecker Inn | VPO Jibhi, Gadagushaini, Himachal Pradesh 175123</p>
+              <p>Inquiry ID: ${dbData.id} | 🌐 www.thewoodpeckerinn.in</p>
             </div>
           </div>
         </body>
@@ -208,8 +208,8 @@ const handler = async (req: Request): Promise<Response> => {
               <p>Warm regards,<br><strong>The Woodpecker Inn Team</strong></p>
             </div>
             <div class="footer">
-              <p>The Woodpecker Inn | Jibhi Valley, Himachal Pradesh</p>
-              <p>📍 <a href="https://maps.google.com/?q=Jibhi,+Himachal+Pradesh">View on Map</a></p>
+              <p>The Woodpecker Inn | VPO Jibhi, Gadagushaini, Himachal Pradesh 175123</p>
+              <p>📍 <a href="https://maps.google.com/?q=Jibhi,+Himachal+Pradesh">View on Map</a> | 🌐 <a href="https://www.thewoodpeckerinn.in">www.thewoodpeckerinn.in</a></p>
             </div>
           </div>
         </body>
