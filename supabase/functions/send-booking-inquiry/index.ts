@@ -219,8 +219,15 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Confirmation email sent to guest:", email);
 
+    // Send WhatsApp notification to the owner with lead details
+    const ownerWhatsAppNumber = "919317224562";
+    const whatsappMessage = `🏔️ *New Booking Inquiry*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📧 *Email:* ${email}\n📅 *Check-in:* ${checkInDate}\n📅 *Check-out:* ${checkOutDate}\n👥 *Guests:* ${guests}${message ? `\n💬 *Message:* ${message}` : ''}\n\n🔗 Reply to guest: https://wa.me/${phone.replace(/\\D/g, '')}`;
+    const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    console.log("WhatsApp notification link generated:", whatsappUrl);
+
     return new Response(
-      JSON.stringify({ success: true, inquiryId: dbData.id }),
+      JSON.stringify({ success: true, inquiryId: dbData.id, whatsappUrl }),
       {
         status: 200,
         headers: { "Content-Type": "application/json", ...corsHeaders },
