@@ -221,7 +221,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send WhatsApp notification to the owner with lead details
     const ownerWhatsAppNumber = "919317224562";
-    const whatsappMessage = `🏔️ *New Booking Inquiry*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📧 *Email:* ${email}\n📅 *Check-in:* ${checkInDate}\n📅 *Check-out:* ${checkOutDate}\n👥 *Guests:* ${guests}${message ? `\n💬 *Message:* ${message}` : ''}\n\n🔗 Reply to guest: https://wa.me/${phone.replace(/\\D/g, '')}`;
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+    const whatsappMessage = `🏔️ *New Booking Inquiry*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📧 *Email:* ${email}\n📅 *Check-in:* ${checkInDate}\n📅 *Check-out:* ${checkOutDate}\n👥 *Guests:* ${guests}${message ? `\n💬 *Message:* ${message}` : ''}\n\n🔗 Reply to guest: https://wa.me/${cleanPhone}`;
     const whatsappUrl = `https://wa.me/${ownerWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     
     console.log("WhatsApp notification link generated:", whatsappUrl);
