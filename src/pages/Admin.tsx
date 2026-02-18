@@ -127,7 +127,7 @@ const Admin = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         <h3 className="font-heading text-xl font-medium text-pine">{inquiry.name}</h3>
-                        <span className={`text-xs px-2 py-1 rounded-full border font-medium ${statusColors[inquiry.status] || statusColors.pending}`}>
+                        <span className={`text-xs px-2 py-1 rounded-full border font-medium ${statusColors[inquiry.status] ?? statusColors.pending}`}>
                           {inquiry.status}
                         </span>
                       </div>

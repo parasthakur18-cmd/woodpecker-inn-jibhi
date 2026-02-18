@@ -57,6 +57,11 @@ const Contact = () => {
 
       if (error) throw error;
 
+      // Open WhatsApp notification for the owner if URL is returned
+      if (data?.whatsappUrl) {
+        window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
+      }
+
       toast({
         title: "Inquiry Sent Successfully! ✨",
         description: "Check your email for confirmation. We'll respond within 24 hours.",
