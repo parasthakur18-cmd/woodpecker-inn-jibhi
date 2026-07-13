@@ -4,7 +4,7 @@ import { ArrowRight, Users, Bed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import roomLuxury from "@/assets/room-luxury.jpg";
 import roomValley from "@/assets/room-valley.jpg";
-import roomFamily from "@/assets/room-family.jpg";
+import duplexRoom from "@/assets/duplex-room.jpg.asset.json";
 import cafeImage from "@/assets/cafe-view.jpg";
 
 const rooms = [
@@ -27,13 +27,13 @@ const rooms = [
     features: ["Panoramic Views", "King Bed", "Sunrise Balcony"],
   },
   {
-    slug: "family-room",
-    name: "Family Room",
-    tagline: "Room to spread out for the whole family",
-    price: "From ₹3,999 / night",
+    slug: "duplex-balcony",
+    name: "Duplex Room with Balcony",
+    tagline: "Two-level wooden loft with private mountain balcony",
+    price: "From ₹4,000 / night",
     capacity: "4 guests",
-    image: roomFamily,
-    features: ["Two Beds", "Family Space", "Kid Friendly"],
+    image: duplexRoom.url,
+    features: ["Private Balcony", "Loft Bedroom", "Mountain View"],
   },
   {
     slug: "dormitory",
