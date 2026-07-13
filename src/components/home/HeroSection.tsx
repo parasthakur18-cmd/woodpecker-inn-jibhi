@@ -11,7 +11,7 @@ export const HeroSection = () => {
           src={heroImage}
           alt="Mountain morning view from The Woodpecker Inn balcony in Jibhi Valley"
           className="w-full h-full object-cover"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/40 to-charcoal/70" />
       </div>
