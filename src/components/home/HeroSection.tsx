@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-hotel.jpg";
+import heroImage from "@/assets/hero-hotel.png.asset.json";
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src={heroImage}
+          src={heroImage.url}
           alt="Mountain morning view from The Woodpecker Inn balcony in Jibhi Valley"
           className="w-full h-full object-cover"
           {...({ fetchpriority: "high" } as Record<string, string>)}
