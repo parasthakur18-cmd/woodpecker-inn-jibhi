@@ -34,7 +34,9 @@ export const Header = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-snow/95 backdrop-blur-md shadow-soft py-3" : "bg-transparent py-5"
+          isScrolled
+            ? "bg-snow/95 backdrop-blur-md shadow-soft py-3"
+            : "bg-gradient-to-b from-charcoal/40 to-transparent backdrop-blur-[2px] py-5"
         }`}
       >
         <div className="container-luxury flex items-center justify-between">
