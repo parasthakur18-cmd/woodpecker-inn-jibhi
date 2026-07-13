@@ -13,6 +13,9 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import Dormitory from "./pages/Dormitory";
+import Blog from "./pages/Blog";
+import { Privacy, Terms, Cancellation } from "./pages/Policies";
 
 const queryClient = new QueryClient();
 
@@ -26,12 +29,17 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/rooms" element={<Rooms />} />
+          <Route path="/dormitory" element={<Dormitory />} />
           <Route path="/cafe" element={<Cafe />} />
           <Route path="/attractions" element={<Attractions />} />
           <Route path="/pet-friendly" element={<PetFriendly />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/cancellation" element={<Cancellation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

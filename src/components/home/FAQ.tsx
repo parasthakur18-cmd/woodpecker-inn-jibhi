@@ -1,76 +1,59 @@
 import { motion } from "framer-motion";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 
 const faqs = [
-  {
-    question: "What is the best time to visit Jibhi?",
-    answer: "Jibhi is beautiful year-round! Spring (March-May) offers blooming flowers and pleasant weather. Summer (June-August) is perfect for outdoor activities with temperatures around 15-25°C. Autumn (September-November) brings stunning golden foliage. Winter (December-February) offers snow-covered landscapes, though some roads may be affected.",
-  },
-  {
-    question: "How do I reach The Woodpecker Inn, Jibhi?",
-    answer: "The nearest airport is Bhuntar Airport (Kullu), about 50 km away. From Delhi, you can take an overnight Volvo bus to Aut (around 10-12 hours), then a local taxi to Jibhi (about 1.5 hours). We can arrange pickup from Aut or Bhuntar. The nearest railway station is Joginder Nagar (65 km).",
-  },
-  {
-    question: "Is The Woodpecker Inn pet-friendly?",
-    answer: "Yes! We love having furry guests. Our property has open spaces perfect for pets, and the surrounding trails are ideal for walks. Please inform us in advance if you're bringing a pet so we can make appropriate arrangements.",
-  },
-  {
-    question: "What activities can I do near the inn?",
-    answer: "There's plenty to explore! Visit Jalori Pass and Serolsar Lake, trek to Jibhi Waterfall, explore the ancient Chehni Kothi, go fishing in Tirthan River, enjoy birdwatching, or simply relax at our café with a book. We can arrange guides for treks and local tours.",
-  },
-  {
-    question: "Do you serve food at the property?",
-    answer: "Absolutely! Our mountain-view café serves breakfast, lunch, and dinner. We specialize in both Himachali cuisine (try our famous Siddu and Dham!) and continental options. Fresh, locally-sourced ingredients are used whenever possible. Coffee and snacks are available throughout the day.",
-  },
-  {
-    question: "Is WiFi available?",
-    answer: "Yes, we have WiFi throughout the property. While it's suitable for general browsing and light work, please note that speeds in mountain areas can vary. For heavy uploads or video calls, we recommend downloading content beforehand.",
-  },
+  { q: "What are the check-in and check-out timings?", a: "Check-in is from 1:00 PM and check-out by 11:00 AM. Early check-in and late check-out are on request, subject to availability." },
+  { q: "Is parking available at the property?", a: "Yes, free parking is available on-site for cars. The road right up to the property is drivable." },
+  { q: "How are the road conditions to Jibhi?", a: "The main highway is smooth. The last stretch through Jibhi has narrow mountain roads but is well-maintained. Any sedan or SUV can reach the property easily." },
+  { q: "Are pets allowed?", a: "Yes, well-behaved pets are welcome. Please let us know in advance so we can prepare the right space for you and your companion." },
+  { q: "Is bonfire included or extra?", a: "Bonfire is available on request. A small charge applies (₹500) to cover wood and setup, especially in winter." },
+  { q: "What are the restaurant timings?", a: "Breakfast 8–10:30 AM, lunch 12:30–3 PM, dinner 7–10 PM. Coffee, snacks and Maggi are available all day." },
+  { q: "Is WiFi available?", a: "Yes, we have high-speed WiFi across the property — reliable enough for remote work and video calls, though mountain networks can occasionally fluctuate." },
+  { q: "How far is The Woodpecker Inn from the Jibhi bus stand?", a: "We're about 1 km from the main Jibhi bus stand — walkable in 10–12 minutes, or we can arrange a pickup." },
+  { q: "Which is the nearest airport?", a: "Bhuntar Airport (Kullu) is the nearest, roughly 50 km / 2 hours away by road." },
+  { q: "When is snowfall season in Jibhi?", a: "Snowfall typically happens from mid-December to late February. Jalori Pass gets heavy snow first." },
+  { q: "What is the best time to visit Jibhi?", a: "March–June is perfect for pleasant weather and flowers. September–November has stunning golden foliage. December–February is best if you love snow." },
+  { q: "How far is Mini Thailand from the property?", a: "Mini Thailand is about 10 km from The Woodpecker Inn — around a 25-minute drive plus a short walk." },
+  { q: "How far is Jalori Pass?", a: "Jalori Pass is about 12 km. In summer it's a 30-minute drive; in winter, the road may be affected by snow." },
+  { q: "Do you offer taxi and travel assistance?", a: "Yes. We can arrange local taxis, guides, and help you plan day trips to Mini Thailand, Jalori Pass, Serolsar Lake and beyond." },
 ];
 
 export const FAQ = () => {
   return (
     <section className="section-padding bg-snow">
       <div className="container-luxury max-w-3xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <span className="label-caps text-wood mb-4 block">FAQs</span>
-          <h2 className="heading-section text-pine mb-4">
-            Frequently Asked Questions
-          </h2>
+          <span className="label-caps text-accent mb-3 block">FAQ</span>
+          <h2 className="heading-section text-primary mb-4">Everything you need to know</h2>
           <p className="body-regular text-muted-foreground">
-            Everything you need to know about staying at The Woodpecker Inn
+            Practical answers to plan a smooth Jibhi trip.
           </p>
         </motion.div>
 
-        {/* Accordion */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, i) => (
               <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card rounded-xl px-6 border-none shadow-card"
+                key={i}
+                value={`item-${i}`}
+                className="bg-card rounded-xl px-5 border border-border/50 shadow-card"
               >
-                <AccordionTrigger className="text-left font-heading text-pine hover:no-underline py-5">
-                  {faq.question}
+                <AccordionTrigger className="text-left font-heading font-semibold text-primary hover:no-underline py-4 text-sm md:text-base">
+                  {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
-                  {faq.answer}
+                <AccordionContent className="text-muted-foreground pb-4 text-sm">
+                  {faq.a}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -78,21 +61,20 @@ export const FAQ = () => {
         </motion.div>
       </div>
 
-      {/* Schema Markup for FAQ */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        })
-      }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        }}
+      />
     </section>
   );
 };

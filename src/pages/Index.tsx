@@ -1,24 +1,30 @@
 import { Layout } from "@/components/layout/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
-import { AboutPreview } from "@/components/home/AboutPreview";
-import { RoomsPreview } from "@/components/home/RoomsPreview";
-import { CafePreview } from "@/components/home/CafePreview";
-import { AttractionsPreview } from "@/components/home/AttractionsPreview";
-import { Testimonials } from "@/components/home/Testimonials";
+import { TrustBar } from "@/components/home/TrustBar";
+import { WhyLove } from "@/components/home/WhyLove";
+import { RoomsSection } from "@/components/home/RoomsSection";
+import { CafeSection } from "@/components/home/CafeSection";
+import { ExperienceJibhi } from "@/components/home/ExperienceJibhi";
+import { GallerySection } from "@/components/home/GallerySection";
+import { Reviews } from "@/components/home/Reviews";
+import { Amenities } from "@/components/home/Amenities";
 import { FAQ } from "@/components/home/FAQ";
-import { CTASection } from "@/components/home/CTASection";
+import { LocationSection } from "@/components/home/LocationSection";
 
 const Index = () => {
   return (
     <Layout>
       <HeroSection />
-      <AboutPreview />
-      <RoomsPreview />
-      <CafePreview />
-      <AttractionsPreview />
-      <Testimonials />
+      <TrustBar />
+      <WhyLove />
+      <RoomsSection />
+      <CafeSection />
+      <ExperienceJibhi />
+      <GallerySection />
+      <Reviews />
+      <Amenities />
       <FAQ />
-      <CTASection />
+      <LocationSection />
     </Layout>
   );
 };

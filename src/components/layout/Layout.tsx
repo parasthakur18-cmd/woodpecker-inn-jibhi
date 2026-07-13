@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { StickyBookingBar } from "../StickyBookingBar";
+import { FloatingCTA } from "../FloatingCTA";
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,11 +9,11 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow pb-20 lg:pb-0">{children}</main>
       <Footer />
-      <StickyBookingBar />
+      <FloatingCTA />
     </div>
   );
 };
