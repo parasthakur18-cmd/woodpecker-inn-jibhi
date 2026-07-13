@@ -1,106 +1,78 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Phone, Mountain, Waves, Coffee, PawPrint } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-hotel.jpg";
 
-const trustSignals = [
-  { icon: Mountain, label: "Mountain View" },
-  { icon: Waves, label: "Riverside" },
-  { icon: Coffee, label: "Café & Cuisine" },
-  { icon: PawPrint, label: "Pet Friendly" },
-];
-
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="The Woodpecker Inn - Luxury Mountain Stay in Jibhi Valley"
+          alt="Mountain morning view from The Woodpecker Inn balcony in Jibhi Valley"
           className="w-full h-full object-cover"
+          fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/40 to-charcoal/70" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container-luxury text-center text-snow pt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+      <div className="relative z-10 container-luxury text-center text-snow pt-20 pb-16">
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="label-caps text-snow/85 mb-6 inline-block"
         >
-          <span className="label-caps text-snow/80 mb-4 block">Jibhi Valley, Himachal Pradesh</span>
-        </motion.div>
+          Jibhi · Himachal Pradesh
+        </motion.span>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
           className="heading-display text-snow mb-6 max-w-4xl mx-auto text-balance"
         >
-          Luxury Mountain Stay in the Heart of Jibhi Valley
+          Wake Up To The<br className="hidden sm:inline" /> Mountains Of Jibhi
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="body-large text-snow/90 max-w-2xl mx-auto mb-10"
+          transition={{ duration: 0.9, delay: 0.5 }}
+          className="body-large text-snow/90 max-w-2xl mx-auto mb-10 font-normal"
         >
-          River-side calm, wooden luxury, valley views & warm Himachali hospitality. 
-          Your perfect Himalayan escape awaits.
+          Escape the city and experience peaceful mountain mornings, forest walks,
+          delicious café food, comfortable stays, and genuine Himachali hospitality.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          transition={{ duration: 0.9, delay: 0.65 }}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
         >
           <Link to="/contact">
-            <Button variant="hero" size="xl">
-              Book Your Stay
+            <Button variant="hero" size="xl" className="w-full sm:w-auto">
+              Book Now
             </Button>
           </Link>
-          <a href="tel:+919317224562">
-            <Button variant="heroOutline" size="xl">
-              <Phone className="w-5 h-5" />
-              Call Now
+          <Link to="/rooms">
+            <Button variant="heroOutline" size="xl" className="w-full sm:w-auto">
+              Explore Rooms
             </Button>
-          </a>
-        </motion.div>
-
-        {/* Trust Signals */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="flex flex-wrap justify-center gap-6 md:gap-10"
-        >
-          {trustSignals.map((signal, index) => (
-            <div
-              key={signal.label}
-              className="flex items-center gap-2 text-snow/80"
-            >
-              <signal.icon className="w-5 h-5" />
-              <span className="text-sm font-medium">{signal.label}</span>
-            </div>
-          ))}
+          </Link>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.4 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity }}
           className="w-6 h-10 border-2 border-snow/50 rounded-full flex justify-center pt-2"
         >
           <div className="w-1 h-2 bg-snow/80 rounded-full" />
