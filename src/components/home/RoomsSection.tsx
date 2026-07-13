@@ -4,7 +4,7 @@ import { ArrowRight, Users, Bed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import roomLuxury from "@/assets/room-luxury.jpg";
 import roomValley from "@/assets/room-valley.jpg";
-import roomFamily from "@/assets/room-family.jpg";
+import duplexRoom from "@/assets/duplex-room.jpg.asset.json";
 import cafeImage from "@/assets/cafe-view.jpg";
 
 const rooms = [
