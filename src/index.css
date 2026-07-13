@@ -2,26 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  The Woodpecker Inn — Authentic Mountain Lodge design system
+  Warm, Scandinavian, nature-inspired. Forest greens, warm woods, cream, sky blue.
+  Tokens keep legacy names (pine/wood/mist/snow) but map to the new brand palette
+  so existing components pick up the rebrand without churn.
+*/
+
 @layer base {
   :root {
-    /* Primary Colors - Nature Inspired */
-    --pine-green: 153 36% 18%;
-    --pine-green-light: 153 30% 25%;
-    --pine-green-dark: 153 40% 12%;
-    
-    --wood-brown: 28 52% 36%;
-    --wood-brown-light: 28 45% 50%;
-    --wood-brown-dark: 28 55% 25%;
-    
-    --snow-white: 0 0% 98%;
-    --mist-grey: 0 0% 85%;
-    --mist-grey-light: 0 0% 92%;
-    
-    /* Accent Colors */
-    --gold-accent: 38 70% 50%;
-    --forest-shadow: 153 25% 8%;
-    
-    /* Semantic Tokens */
+    /* Brand palette (HSL) */
+    --pine-green: 137 32% 20%;        /* Forest Green #234229 */
+    --pine-green-light: 137 22% 32%;
+    --pine-green-dark: 137 40% 14%;
+
+    --wood-brown: 26 40% 39%;          /* Warm Wood #8B5E3C */
+    --wood-brown-light: 26 40% 55%;
+    --wood-brown-dark: 26 45% 28%;
+
+    --snow-white: 42 33% 96%;          /* Cream #F8F6F1 */
+    --mist-grey: 40 15% 88%;
+    --mist-grey-light: 40 25% 94%;
+
+    --sky-blue: 202 65% 76%;           /* Sky Blue accent #9CCBEA */
+    --sky-blue-soft: 202 70% 90%;
+
+    --gold-accent: 40 68% 55%;         /* warm amber for stars only */
+    --forest-shadow: 0 0% 17%;         /* Charcoal #2B2B2B — text */
+
+    /* Semantic tokens */
     --background: var(--snow-white);
     --foreground: var(--forest-shadow);
 
@@ -38,188 +47,111 @@
     --secondary-foreground: var(--pine-green);
 
     --muted: var(--mist-grey-light);
-    --muted-foreground: 153 15% 40%;
+    --muted-foreground: 0 0% 38%;
 
     --accent: var(--wood-brown);
     --accent-foreground: var(--snow-white);
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: var(--mist-grey);
-    --input: var(--mist-grey);
+    --border: 40 12% 84%;
+    --input: 40 12% 84%;
     --ring: var(--pine-green);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Typography */
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-    
-    /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(var(--pine-green) / 0.08);
-    --shadow-elevated: 0 12px 40px -8px hsl(var(--pine-green) / 0.12);
+    /* Typography — Poppins for headings, DM Sans for body */
+    --font-heading: 'Poppins', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+
+    /* Shadows — soft, natural */
+    --shadow-soft: 0 4px 20px -6px hsl(var(--pine-green) / 0.08);
+    --shadow-elevated: 0 20px 50px -12px hsl(var(--pine-green) / 0.18);
     --shadow-card: 0 2px 12px -2px hsl(var(--pine-green) / 0.06);
-    
+
     /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(var(--forest-shadow) / 0.4) 0%, hsl(var(--forest-shadow) / 0.6) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(var(--forest-shadow) / 0.25) 0%, hsl(var(--forest-shadow) / 0.55) 100%);
     --gradient-pine: linear-gradient(135deg, hsl(var(--pine-green)) 0%, hsl(var(--pine-green-dark)) 100%);
     --gradient-wood: linear-gradient(135deg, hsl(var(--wood-brown)) 0%, hsl(var(--wood-brown-dark)) 100%);
-    --gradient-mist: linear-gradient(180deg, hsl(var(--snow-white)) 0%, hsl(var(--mist-grey-light)) 100%);
+    --gradient-cream: linear-gradient(180deg, hsl(var(--snow-white)) 0%, hsl(var(--mist-grey-light)) 100%);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: var(--snow-white);
+    --sidebar-foreground: var(--forest-shadow);
+    --sidebar-primary: var(--pine-green);
+    --sidebar-primary-foreground: var(--snow-white);
+    --sidebar-accent: var(--mist-grey-light);
+    --sidebar-accent-foreground: var(--pine-green);
+    --sidebar-border: 40 12% 84%;
+    --sidebar-ring: var(--pine-green);
   }
 
   .dark {
-    --background: var(--forest-shadow);
+    --background: 137 20% 8%;
     --foreground: var(--snow-white);
-    --card: 153 25% 12%;
+    --card: 137 18% 12%;
     --card-foreground: var(--snow-white);
-    --popover: 153 25% 12%;
+    --popover: 137 18% 12%;
     --popover-foreground: var(--snow-white);
     --primary: var(--snow-white);
     --primary-foreground: var(--pine-green);
-    --secondary: 153 20% 20%;
+    --secondary: 137 15% 18%;
     --secondary-foreground: var(--snow-white);
-    --muted: 153 20% 20%;
-    --muted-foreground: 153 15% 65%;
+    --muted: 137 15% 18%;
+    --muted-foreground: 137 10% 70%;
     --accent: var(--wood-brown-light);
     --accent-foreground: var(--snow-white);
-    --border: 153 20% 25%;
-    --input: 153 20% 25%;
+    --border: 137 15% 22%;
+    --input: 137 15% 22%;
     --ring: var(--snow-white);
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
     @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading; letter-spacing: -0.01em; }
 }
 
 @layer components {
-  .section-padding {
-    @apply px-4 py-16 md:px-8 md:py-24 lg:px-16 lg:py-32;
-  }
-  
-  .container-luxury {
-    @apply max-w-7xl mx-auto px-4 md:px-8;
-  }
-  
-  .text-balance {
-    text-wrap: balance;
-  }
-  
+  .section-padding { @apply px-4 py-16 md:px-8 md:py-24 lg:px-16 lg:py-28; }
+  .container-luxury { @apply max-w-7xl mx-auto px-4 md:px-8; }
+  .text-balance { text-wrap: balance; }
+
   .heading-display {
-    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight;
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05];
   }
-  
   .heading-section {
-    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight;
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight;
   }
-  
-  .heading-card {
-    @apply font-heading text-xl md:text-2xl font-medium;
-  }
-  
-  .body-large {
-    @apply font-body text-lg md:text-xl leading-relaxed;
-  }
-  
-  .body-regular {
-    @apply font-body text-base leading-relaxed;
-  }
-  
+  .heading-card { @apply font-heading text-xl md:text-2xl font-semibold; }
+  .body-large { @apply font-body text-lg md:text-xl leading-relaxed; }
+  .body-regular { @apply font-body text-base leading-relaxed; }
   .label-caps {
-    @apply font-body text-xs uppercase tracking-[0.2em] font-medium;
+    @apply font-body text-xs uppercase tracking-[0.22em] font-semibold;
   }
 }
 
 @layer utilities {
-  .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
-  }
-  
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-  
-  .image-shine {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .image-shine::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      hsl(var(--snow-white) / 0.1) 45%,
-      hsl(var(--snow-white) / 0.2) 50%,
-      hsl(var(--snow-white) / 0.1) 55%,
-      transparent 60%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-  
-  .image-shine:hover::after {
-    transform: translateX(100%);
+  .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
+  .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+  .animate-scale-in { animation: scaleIn 0.5s ease-out forwards; }
+  .hover-scale { @apply transition-transform duration-300 hover:scale-[1.02]; }
+  .story-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
