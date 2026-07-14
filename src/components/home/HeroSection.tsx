@@ -21,7 +21,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-end justify-center overflow-hidden">
+    <section className="relative h-[100svh] flex items-end justify-center overflow-hidden">
       {/* Background image with slow Ken Burns zoom */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.img
