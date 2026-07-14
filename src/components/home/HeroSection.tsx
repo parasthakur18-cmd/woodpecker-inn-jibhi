@@ -213,23 +213,6 @@ export const HeroSection = () => {
         </motion.form>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.a
-        href="#trust"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-snow/80 hover:text-snow transition-colors text-shadow-hero"
-        aria-label="Scroll to explore"
-      >
-        <span className="text-[10px] tracking-[0.28em] uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown className="w-4 h-4" strokeWidth={1.5} />
-        </motion.div>
-      </motion.a>
     </section>
   );
 };
