@@ -34,7 +34,7 @@ export const HeroSection = () => {
           {...({ fetchpriority: "high" } as Record<string, string>)}
         />
         {/* Ultra-light gradient — only enough for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/20 via-transparent to-charcoal/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/10 via-transparent to-charcoal/60" />
       </div>
 
       <div className="relative z-10 container-luxury text-center text-snow pt-8 pb-28 sm:pb-20">
