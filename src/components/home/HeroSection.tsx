@@ -42,7 +42,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="label-caps text-snow/85 mb-3 inline-block text-shadow-hero"
+          className="label-caps text-snow/85 mb-2 inline-block text-shadow-hero"
         >
           Jibhi · Himachal Pradesh
         </motion.span>
@@ -51,7 +51,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.25 }}
-          className="font-heading font-semibold text-snow mb-3 max-w-[700px] mx-auto text-balance leading-[1.05] text-[1.875rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] text-shadow-hero"
+          className="font-heading font-semibold text-snow mb-2 max-w-[700px] mx-auto text-balance leading-[1.05] text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3rem] text-shadow-hero"
         >
           Wake Up To The Mountains Of Jibhi
         </motion.h1>
@@ -60,7 +60,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.45 }}
-          className="text-snow/90 max-w-xl mx-auto mb-6 text-xs sm:text-base italic font-light text-shadow-hero"
+          className="text-snow/90 max-w-xl mx-auto mb-4 text-xs sm:text-base italic font-light text-shadow-hero"
         >
           Where every morning begins with a mountain view.
         </motion.p>
