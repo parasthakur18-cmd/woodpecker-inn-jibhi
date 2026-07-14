@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronDown, Calendar, Users, BedDouble } from "lucide-react";
+import { Calendar, Users, BedDouble } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
