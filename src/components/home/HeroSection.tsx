@@ -37,7 +37,7 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/10 via-transparent to-charcoal/60" />
       </div>
 
-      <div className="relative z-10 container-luxury text-center text-snow pt-8 pb-28 sm:pb-20">
+      <div className="relative z-10 container-luxury flex flex-col justify-end text-center text-snow pt-8 pb-28 sm:pb-20">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
