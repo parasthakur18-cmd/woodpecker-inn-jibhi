@@ -3,13 +3,20 @@ import roomValley from "@/assets/room-valley.jpg";
 import roomFamily from "@/assets/room-family.jpg";
 import duplexRoom from "@/assets/duplex-room.jpg.asset.json";
 import cafeView from "@/assets/cafe-view.jpg";
+import deluxeHero from "@/assets/deluxe-double-balcony-hero.png.asset.json";
+import deluxe2 from "@/assets/deluxe-double-balcony-2.png.asset.json";
+import deluxe3 from "@/assets/deluxe-double-balcony-3.png.asset.json";
+
+export type RoomHighlight = { icon: string; label: string };
 
 export type Room = {
   slug: string;
   name: string;
   tagline: string;
   description: string;
+  longDescription?: string;
   image: string;
+  heroImage?: string;
   gallery?: string[];
   inventory: number;
   inventoryLabel: string;
@@ -19,24 +26,63 @@ export type Room = {
   startingPrice: string;
   badges: string[];
   features: string[];
+  highlights?: RoomHighlight[];
+  amenities?: string[];
+  checkIn?: string;
+  checkOut?: string;
 };
+
+const defaultHighlights: RoomHighlight[] = [
+  { icon: "users", label: "Up to 2 Guests" },
+  { icon: "bed", label: "Double Bed" },
+  { icon: "mountain", label: "Mountain & Valley View" },
+  { icon: "tree", label: "Private Balcony" },
+  { icon: "wifi", label: "Free High-Speed Wi-Fi" },
+  { icon: "tv", label: "Smart TV" },
+  { icon: "bath", label: "Attached Private Bathroom" },
+  { icon: "flame", label: "24×7 Hot & Cold Water" },
+];
+
+const defaultAmenities = [
+  "Comfortable Double Bed",
+  "Private Balcony",
+  "Mountain View",
+  "Smart TV",
+  "Attached Bathroom",
+  "Western Toilet",
+  "24×7 Hot & Cold Water",
+  "Complimentary High-Speed Wi-Fi",
+  "Fresh Linen & Towels",
+  "Complimentary Drinking Water",
+  "Charging Points",
+  "Daily Housekeeping",
+  "Large Windows with Natural Light",
+];
 
 export const rooms: Room[] = [
   {
     slug: "deluxe-double-balcony",
     name: "Deluxe Double Room with Balcony",
-    tagline: "Our most-loved room — wooden warmth and a private balcony",
+    tagline: "Wake up to breathtaking mountain views from your private balcony.",
     description:
       "A beautifully finished double room with handcrafted wooden interiors and a private balcony opening onto the pine-covered mountains.",
-    image: roomLuxury,
+    longDescription:
+      "Experience the beauty of Jibhi from the comfort of our Deluxe Double Room with Balcony. Thoughtfully designed for couples and travelers seeking a peaceful mountain escape, this room offers a comfortable double bed, a private balcony with breathtaking mountain views, modern amenities, and a relaxing atmosphere surrounded by nature.",
+    image: deluxeHero.url,
+    heroImage: deluxeHero.url,
+    gallery: [deluxe2.url, deluxe3.url],
     inventory: 4,
     inventoryLabel: "4 Rooms",
     capacity: "2 Guests",
-    bedType: "Double Bed",
+    bedType: "1 Double Bed",
     size: "260 sq ft",
     startingPrice: "₹3,499",
     badges: ["Balcony", "Mountain View", "Free Wi-Fi", "Attached Bathroom"],
     features: ["Private balcony", "Double bed", "Mountain view", "Room heater", "Complimentary breakfast"],
+    highlights: defaultHighlights,
+    amenities: defaultAmenities,
+    checkIn: "12:00 PM",
+    checkOut: "11:00 AM",
   },
   {
     slug: "double-balcony",
