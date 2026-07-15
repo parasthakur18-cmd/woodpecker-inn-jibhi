@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Coffee, Sunrise, UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import cafeImage from "@/assets/cafe-view.jpg";
-import cuisineImage from "@/assets/local-cuisine.jpg";
+import cafeImageAsset from "@/assets/cafe-view.png.asset.json";
+const cafeImage = cafeImageAsset.url;
+import cuisineImageAsset from "@/assets/cafe-interior.jpg.asset.json";
+const cuisineImage = cuisineImageAsset.url;
 
 export const CafePreview = () => {
   return (
