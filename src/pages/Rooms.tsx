@@ -2,90 +2,13 @@ import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, Eye, Users, Heart, Wifi, Coffee, Mountain, Sparkles } from "lucide-react";
-import roomLuxury from "@/assets/room-luxury.jpg";
-import roomValley from "@/assets/room-valley.jpg";
-import roomFamily from "@/assets/room-family.jpg";
-
-const rooms = [
-  {
-    id: "luxury-wooden",
-    name: "Luxury Wooden Room",
-    tagline: "Handcrafted Comfort",
-    description: "Experience the warmth of traditional Himalayan craftsmanship in our signature wooden rooms. Floor-to-ceiling wood paneling, locally crafted furniture, and large windows that frame the mountain landscape create an atmosphere of rustic elegance.",
-    image: roomLuxury,
-    icon: Eye,
-    capacity: "2 Adults",
-    size: "250 sq ft",
-    features: [
-      "Premium wooden interiors",
-      "Private balcony with mountain view",
-      "King-size bed with premium linens",
-      "En-suite bathroom with hot water",
-      "Room heater for winters",
-      "Complimentary breakfast",
-    ],
-    amenities: [
-      { icon: Wifi, label: "Free WiFi" },
-      { icon: Coffee, label: "Tea/Coffee maker" },
-      { icon: Mountain, label: "Mountain View" },
-      { icon: Sparkles, label: "Daily Housekeeping" },
-    ],
-  },
-  {
-    id: "valley-view",
-    name: "Valley View Suite",
-    tagline: "Panoramic Paradise",
-    description: "Wake up to the most breathtaking views in Jibhi. Our Valley View Suites offer unobstructed panoramas of the entire Jibhi Valley, from the river below to the snow-capped peaks on the horizon. Perfect for couples seeking a romantic escape.",
-    image: roomValley,
-    icon: Heart,
-    capacity: "2 Adults",
-    size: "300 sq ft",
-    features: [
-      "180° panoramic valley views",
-      "Romantic setting for couples",
-      "King-size bed facing the view",
-      "Private sit-out balcony",
-      "Premium bathroom amenities",
-      "Complimentary breakfast",
-    ],
-    amenities: [
-      { icon: Wifi, label: "Free WiFi" },
-      { icon: Coffee, label: "Tea/Coffee maker" },
-      { icon: Mountain, label: "Valley View" },
-      { icon: Sparkles, label: "Daily Housekeeping" },
-    ],
-  },
-  {
-    id: "family-room",
-    name: "Family Room",
-    tagline: "Space for Everyone",
-    description: "Designed with families in mind, our spacious Family Rooms comfortably accommodate parents and children. Extra floor space for play, multiple beds, and a cozy atmosphere make this the perfect base for your family's mountain adventure.",
-    image: roomFamily,
-    icon: Users,
-    capacity: "2 Adults + 2 Children",
-    size: "400 sq ft",
-    features: [
-      "Spacious layout for families",
-      "Multiple beds (1 King + 1 Twin)",
-      "Extra floor space",
-      "Mountain view windows",
-      "Connected to nature trails",
-      "Complimentary breakfast for all",
-    ],
-    amenities: [
-      { icon: Wifi, label: "Free WiFi" },
-      { icon: Coffee, label: "Tea/Coffee maker" },
-      { icon: Mountain, label: "Mountain View" },
-      { icon: Sparkles, label: "Daily Housekeeping" },
-    ],
-  },
-];
+import { Users, Bed, Wifi, Bath, Mountain, TreePine } from "lucide-react";
+import { rooms } from "@/data/rooms";
 
 const Rooms = () => {
   return (
     <Layout>
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative min-h-[50vh] flex items-center justify-center bg-pine">
         <div className="relative z-10 container-luxury text-center text-snow pt-20">
           <motion.span
@@ -101,7 +24,7 @@ const Rooms = () => {
             transition={{ delay: 0.1 }}
             className="heading-display mb-6"
           >
-            Rooms & Suites
+            Rooms & Dormitory
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -109,83 +32,79 @@ const Rooms = () => {
             transition={{ delay: 0.2 }}
             className="body-large text-snow/90 max-w-2xl mx-auto"
           >
-            Each room is a sanctuary of comfort, blending rustic mountain charm 
-            with modern amenities for the perfect Himalayan retreat.
+            From boutique king-view suites to social backpacker dorms — nine
+            room categories, one mountain home.
           </motion.p>
         </div>
       </section>
 
-      {/* Rooms List */}
+      {/* Rooms Grid */}
       <section className="section-padding bg-snow">
         <div className="container-luxury">
-          <div className="space-y-24">
-            {rooms.map((room, index) => (
-              <motion.div
-                key={room.id}
-                id={room.id}
-                initial={{ opacity: 0, y: 40 }}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rooms.map((room, i) => (
+              <motion.article
+                key={room.slug}
+                id={room.slug}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+                transition={{ delay: (i % 3) * 0.06 }}
+                className="group bg-card rounded-2xl overflow-hidden shadow-card border border-border/40 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col"
               >
-                {/* Image */}
-                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated">
-                    <img
-                      src={room.image}
-                      alt={room.name}
-                      className="w-full h-full object-cover"
-                    />
+                <div className="relative aspect-[4/3] overflow-hidden bg-mist">
+                  <img
+                    src={room.image}
+                    alt={room.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 max-w-[calc(100%-1.5rem)]">
+                    {room.badges.includes("Mountain View") && (
+                      <span className="text-[10px] font-medium px-2 py-1 rounded-full bg-snow/95 backdrop-blur text-primary shadow-sm inline-flex items-center gap-1">
+                        <Mountain className="w-3 h-3" /> Mountain View
+                      </span>
+                    )}
+                    {room.badges.includes("Balcony") && (
+                      <span className="text-[10px] font-medium px-2 py-1 rounded-full bg-snow/95 backdrop-blur text-primary shadow-sm inline-flex items-center gap-1">
+                        <TreePine className="w-3 h-3" /> Balcony
+                      </span>
+                    )}
                   </div>
+                  <span className="absolute bottom-3 right-3 text-[10px] font-medium px-2 py-1 rounded-full bg-primary text-primary-foreground">
+                    Only {room.inventoryLabel} left
+                  </span>
                 </div>
 
-                {/* Content */}
-                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <room.icon className="w-6 h-6 text-wood" />
-                    <span className="label-caps text-wood">{room.tagline}</span>
-                  </div>
-                  <h2 className="heading-section text-pine mb-4">{room.name}</h2>
-                  <p className="text-muted-foreground body-regular mb-6">{room.description}</p>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="heading-card text-primary mb-1">{room.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{room.tagline}</p>
 
-                  {/* Meta */}
-                  <div className="flex gap-6 mb-6 text-sm">
-                    <span className="text-pine font-medium">{room.capacity}</span>
-                    <span className="text-muted-foreground">{room.size}</span>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" />{room.capacity}</span>
+                    <span className="flex items-center gap-1.5"><Bed className="w-3.5 h-3.5" />{room.bedType}</span>
+                    <span className="flex items-center gap-1.5"><Wifi className="w-3.5 h-3.5" />Free Wi-Fi</span>
+                    <span className="flex items-center gap-1.5"><Bath className="w-3.5 h-3.5" />
+                      {room.badges.includes("Shared Bathroom") ? "Shared Bath" : "Attached Bath"}
+                    </span>
                   </div>
 
-                  {/* Features */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                    {room.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-wood flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </div>
-                    ))}
+                  <div className="mt-auto pt-4 border-t border-border/50 flex items-end justify-between gap-2">
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Starts at</p>
+                      <p className="font-heading font-bold text-primary text-sm">From {room.startingPrice} / night</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <Link to={`/rooms/${room.slug}`}>
+                        <Button size="sm" variant="outline">Details</Button>
+                      </Link>
+                      <Link to="/contact">
+                        <Button size="sm" variant="forest">Book</Button>
+                      </Link>
+                    </div>
                   </div>
-
-                  {/* Amenities */}
-                  <div className="flex flex-wrap gap-4 mb-8">
-                    {room.amenities.map((amenity) => (
-                      <div
-                        key={amenity.label}
-                        className="flex items-center gap-2 px-4 py-2 bg-pine/5 rounded-full text-sm"
-                      >
-                        <amenity.icon className="w-4 h-4 text-pine" />
-                        <span className="text-pine">{amenity.label}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <Link to="/contact">
-                    <Button variant="pine" size="lg">
-                      Book This Room
-                    </Button>
-                  </Link>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
