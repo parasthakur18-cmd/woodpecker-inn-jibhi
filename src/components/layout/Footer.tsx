@@ -17,7 +17,7 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://instagram.com/thewoodpeckerinn"
+                href="https://www.instagram.com/thewoodpeckerinnjibhi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
