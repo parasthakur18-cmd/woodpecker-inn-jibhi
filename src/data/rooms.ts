@@ -6,6 +6,8 @@ import cafeView from "@/assets/cafe-view.jpg";
 import deluxeHero from "@/assets/deluxe-double-balcony-hero.png.asset.json";
 import deluxe2 from "@/assets/deluxe-double-balcony-2.png.asset.json";
 import deluxe3 from "@/assets/deluxe-double-balcony-3.png.asset.json";
+import doubleHero from "@/assets/double-balcony-hero.png.asset.json";
+import double2 from "@/assets/double-balcony-2.png.asset.json";
 
 export type RoomHighlight = { icon: string; label: string };
 
