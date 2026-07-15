@@ -1,22 +1,17 @@
-import roomLuxury from "@/assets/room-luxury.jpg";
-import roomValley from "@/assets/room-valley.jpg";
-import roomFamily from "@/assets/room-family.jpg";
-import duplexRoom from "@/assets/duplex-room.jpg.asset.json";
-import cafeView from "@/assets/cafe-view.jpg";
-import deluxeHero from "@/assets/deluxe-double-balcony-hero.png.asset.json";
-import deluxe2 from "@/assets/deluxe-double-balcony-2.png.asset.json";
-import deluxe3 from "@/assets/deluxe-double-balcony-3.png.asset.json";
-import doubleHero from "@/assets/double-balcony-hero.png.asset.json";
-import double2 from "@/assets/double-balcony-2.png.asset.json";
-import kingHero from "@/assets/king-balcony-hero.png.asset.json";
-import king2 from "@/assets/king-balcony-2.png.asset.json";
-import queenBalconyHero from "@/assets/queen-balcony-hero.png.asset.json";
-import quadHero from "@/assets/classic-quadruple-hero.png.asset.json";
-import quad2 from "@/assets/classic-quadruple-2.png.asset.json";
-import mixedDormHero from "@/assets/mixed-dorm-hero.png.asset.json";
-import standardDoubleHero from "@/assets/standard-double-hero.png.asset.json";
-import femaleDormHero from "@/assets/female-dorm-hero.png.asset.json";
-import femaleDorm2 from "@/assets/female-dorm-2.png.asset.json";
+const deluxeHero = "/rooms/deluxe-double-balcony-hero.webp";
+const deluxe2 = "/rooms/deluxe-double-balcony-2.webp";
+const deluxe3 = "/rooms/deluxe-double-balcony-3.webp";
+const doubleHero = "/rooms/double-balcony-hero.webp";
+const double2 = "/rooms/double-balcony-2.webp";
+const kingHero = "/rooms/king-balcony-hero.webp";
+const king2 = "/rooms/king-balcony-2.webp";
+const queenBalconyHero = "/rooms/queen-balcony-hero.webp";
+const quadHero = "/rooms/classic-quadruple-hero.webp";
+const quad2 = "/rooms/classic-quadruple-2.webp";
+const mixedDormHero = "/rooms/mixed-dorm-hero.webp";
+const standardDoubleHero = "/rooms/standard-double-hero.webp";
+const femaleDormHero = "/rooms/female-dorm-hero.webp";
+const femaleDorm2 = "/rooms/female-dorm-2.webp";
 
 export type RoomHighlight = { icon: string; label: string };
 
@@ -79,9 +74,9 @@ export const rooms: Room[] = [
       "A beautifully finished double room with handcrafted wooden interiors and a private balcony opening onto the pine-covered mountains.",
     longDescription:
       "Experience the beauty of Jibhi from the comfort of our Deluxe Double Room with Balcony. Thoughtfully designed for couples and travelers seeking a peaceful mountain escape, this room offers a comfortable double bed, a private balcony with breathtaking mountain views, modern amenities, and a relaxing atmosphere surrounded by nature.",
-    image: deluxeHero.url,
-    heroImage: deluxeHero.url,
-    gallery: [deluxe2.url, deluxe3.url],
+    image: deluxeHero,
+    heroImage: deluxeHero,
+    gallery: [deluxe2, deluxe3],
     inventory: 4,
     inventoryLabel: "4 Rooms",
     capacity: "2 Guests",
@@ -104,9 +99,9 @@ export const rooms: Room[] = [
       "A cozy double room with a private balcony to soak in the pine-scented air and mountain silence.",
     longDescription:
       "Relax in our Double Room with Balcony, thoughtfully designed for couples and travelers looking for a peaceful stay in the heart of Jibhi. Enjoy the comfort of a spacious double bed, a private balcony with refreshing mountain views, modern amenities, and a cozy atmosphere that makes every stay memorable.",
-    image: doubleHero.url,
-    heroImage: doubleHero.url,
-    gallery: [double2.url],
+    image: doubleHero,
+    heroImage: doubleHero,
+    gallery: [double2],
     inventory: 2,
     inventoryLabel: "2 Rooms",
     capacity: "2 Guests",
@@ -129,9 +124,9 @@ export const rooms: Room[] = [
       "Our most sought-after room. A king bed faces the mountains and a private balcony frames the entire Jibhi valley.",
     longDescription:
       "Our King Room with Balcony offers extra space, comfort, and stunning mountain views, making it an ideal choice for couples seeking a peaceful getaway in Jibhi. Relax on your private balcony, enjoy the fresh mountain air, and unwind in a cozy room designed for a memorable stay.",
-    image: kingHero.url,
-    heroImage: kingHero.url,
-    gallery: [king2.url],
+    image: kingHero,
+    heroImage: kingHero,
+    gallery: [king2],
     inventory: 1,
     inventoryLabel: "1 Room",
     capacity: "2 Guests",
@@ -172,8 +167,8 @@ export const rooms: Room[] = [
     tagline: "Queen bed with your own private balcony",
     description:
       "A cozy queen room with a private balcony to enjoy slow mornings and a cup of chai in the mountains.",
-    image: queenBalconyHero.url,
-    heroImage: queenBalconyHero.url,
+    image: queenBalconyHero,
+    heroImage: queenBalconyHero,
     gallery: [],
     inventory: 1,
     inventoryLabel: "1 Room",
@@ -192,8 +187,8 @@ export const rooms: Room[] = [
       "A clean, comfortable double room with all the essentials for a restful stay in the mountains.",
     longDescription:
       "Our Standard Double Room offers a comfortable and relaxing stay for couples and travelers looking to experience the natural beauty of Jibhi. Thoughtfully designed with all the essential amenities, this room provides a peaceful retreat after a day of exploring the mountains.",
-    image: standardDoubleHero.url,
-    heroImage: standardDoubleHero.url,
+    image: standardDoubleHero,
+    heroImage: standardDoubleHero,
     gallery: [],
     inventory: 2,
     inventoryLabel: "2 Rooms",
@@ -236,9 +231,9 @@ export const rooms: Room[] = [
       "Extra floor space and multiple beds for families or groups of friends exploring Jibhi together.",
     longDescription:
       "Our Classic Quadruple Room is designed for families and small groups who want to stay together while enjoying the peaceful surroundings of Jibhi. With comfortable bedding, ample space, beautiful mountain views, and essential modern amenities, it offers a relaxing and memorable mountain stay.",
-    image: quadHero.url,
-    heroImage: quadHero.url,
-    gallery: [quad2.url],
+    image: quadHero,
+    heroImage: quadHero,
+    gallery: [quad2],
     inventory: 1,
     inventoryLabel: "1 Room",
     capacity: "4 Guests",
@@ -281,8 +276,8 @@ export const rooms: Room[] = [
       "Six cozy bunks in a mixed dorm, made for backpackers and solo travellers who love meeting new people.",
     longDescription:
       "Stay in our comfortable 6-Bed Mixed Dormitory, designed for solo travelers, backpackers, and adventure seekers. Enjoy a clean and welcoming shared space, comfortable bedding, beautiful mountain surroundings, and a friendly atmosphere that makes it easy to meet fellow travelers while exploring Jibhi.",
-    image: mixedDormHero.url,
-    heroImage: mixedDormHero.url,
+    image: mixedDormHero,
+    heroImage: mixedDormHero,
     gallery: [],
     inventory: 6,
     inventoryLabel: "6 Beds",
@@ -325,9 +320,9 @@ export const rooms: Room[] = [
       "A women-only dorm with 4 comfortable bunks — a safe, welcoming space for solo female travellers.",
     longDescription:
       "Our 4-Bed Female Dormitory is thoughtfully designed for solo women travelers looking for a safe, comfortable, and budget-friendly stay in Jibhi. Enjoy clean shared accommodation, beautiful mountain surroundings, and a welcoming atmosphere while exploring the peaceful beauty of the Himalayas.",
-    image: femaleDormHero.url,
-    heroImage: femaleDormHero.url,
-    gallery: [femaleDorm2.url],
+    image: femaleDormHero,
+    heroImage: femaleDormHero,
+    gallery: [femaleDorm2],
     inventory: 4,
     inventoryLabel: "4 Beds",
     capacity: "1 Guest per Bed",
