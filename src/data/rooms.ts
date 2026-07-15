@@ -8,6 +8,8 @@ import deluxe2 from "@/assets/deluxe-double-balcony-2.png.asset.json";
 import deluxe3 from "@/assets/deluxe-double-balcony-3.png.asset.json";
 import doubleHero from "@/assets/double-balcony-hero.png.asset.json";
 import double2 from "@/assets/double-balcony-2.png.asset.json";
+import kingHero from "@/assets/king-balcony-hero.png.asset.json";
+import king2 from "@/assets/king-balcony-2.png.asset.json";
 
 export type RoomHighlight = { icon: string; label: string };
 
@@ -114,18 +116,48 @@ export const rooms: Room[] = [
   {
     slug: "king-balcony",
     name: "King Room with Balcony",
-    tagline: "Signature king room with the best view in the house",
+    tagline:
+      "Experience extra comfort with a spacious king-size bed and a private balcony overlooking the beautiful mountains of Jibhi.",
     description:
       "Our most sought-after room. A king bed faces the mountains and a private balcony frames the entire Jibhi valley.",
-    image: roomValley,
+    longDescription:
+      "Our King Room with Balcony offers extra space, comfort, and stunning mountain views, making it an ideal choice for couples seeking a peaceful getaway in Jibhi. Relax on your private balcony, enjoy the fresh mountain air, and unwind in a cozy room designed for a memorable stay.",
+    image: kingHero.url,
+    heroImage: kingHero.url,
+    gallery: [king2.url],
     inventory: 1,
     inventoryLabel: "1 Room",
     capacity: "2 Guests",
-    bedType: "King Bed",
+    bedType: "1 King Size Bed",
     size: "320 sq ft",
     startingPrice: "₹4,499",
     badges: ["Balcony", "Mountain View", "Free Wi-Fi", "Attached Bathroom"],
     features: ["Panoramic mountain view", "King bed", "Private balcony", "Room heater", "Complimentary breakfast"],
+    highlights: [
+      { icon: "users", label: "Up to 2 Guests" },
+      { icon: "bed", label: "King Size Bed" },
+      { icon: "tree", label: "Private Balcony" },
+      { icon: "mountain", label: "Mountain & Valley View" },
+      { icon: "wifi", label: "Complimentary High-Speed Wi-Fi" },
+      { icon: "bath", label: "Attached Private Bathroom" },
+      { icon: "flame", label: "24×7 Hot & Cold Water" },
+    ],
+    amenities: [
+      "King Size Bed",
+      "Private Balcony",
+      "Mountain & Valley View",
+      "Attached Private Bathroom",
+      "Western Toilet",
+      "24×7 Hot & Cold Water",
+      "Complimentary High-Speed Wi-Fi",
+      "Fresh Linen & Towels",
+      "Complimentary Drinking Water",
+      "Charging Points",
+      "Daily Housekeeping",
+      "Large Windows with Natural Light",
+    ],
+    checkIn: "12:00 PM",
+    checkOut: "11:00 AM",
   },
   {
     slug: "superior-queen",
