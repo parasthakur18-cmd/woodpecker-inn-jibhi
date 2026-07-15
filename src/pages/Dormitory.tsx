@@ -65,7 +65,7 @@ const Dormitory = () => {
             >
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-elevated">
                 <img
-                  src={cafeImage}
+                  src={dormImage}
                   alt="Dormitory at The Woodpecker Inn, Jibhi"
                   className="w-full h-full object-cover"
                 />
