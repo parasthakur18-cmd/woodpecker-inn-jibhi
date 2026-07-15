@@ -15,6 +15,8 @@ import quadHero from "@/assets/classic-quadruple-hero.png.asset.json";
 import quad2 from "@/assets/classic-quadruple-2.png.asset.json";
 import mixedDormHero from "@/assets/mixed-dorm-hero.png.asset.json";
 import standardDoubleHero from "@/assets/standard-double-hero.png.asset.json";
+import femaleDormHero from "@/assets/female-dorm-hero.png.asset.json";
+import femaleDorm2 from "@/assets/female-dorm-2.png.asset.json";
 
 export type RoomHighlight = { icon: string; label: string };
 
