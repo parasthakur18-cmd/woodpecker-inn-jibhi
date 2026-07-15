@@ -1,9 +1,11 @@
 import { Phone, MessageCircle, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export const FloatingCTA = () => {
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'd%20like%20to%20know%20about%20availability%20at%20The%20Woodpecker%20Inn%2C%20Jibhi.";
+  const handleWhatsApp = () =>
+    openWhatsApp("919317224562", "Hi! I'd like to know about availability at The Woodpecker Inn, Jibhi.");
 
   return (
     <>
@@ -21,15 +23,14 @@ export const FloatingCTA = () => {
         >
           <Phone className="w-5 h-5" />
         </a>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={handleWhatsApp}
           aria-label="WhatsApp"
           className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-elevated hover:scale-110 transition-transform"
         >
           <MessageCircle className="w-5 h-5" />
-        </a>
+        </button>
         <Link
           to="/contact"
           aria-label="Book Now"
@@ -49,15 +50,14 @@ export const FloatingCTA = () => {
             <Phone className="w-5 h-5 text-primary" />
             <span className="text-[11px] font-medium text-primary">Call</span>
           </a>
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={handleWhatsApp}
             className="flex flex-col items-center justify-center gap-1 py-2 rounded-lg hover:bg-[#25D366]/10 transition-colors"
           >
             <MessageCircle className="w-5 h-5 text-[#25D366]" />
             <span className="text-[11px] font-medium text-[#25D366]">WhatsApp</span>
-          </a>
+          </button>
           <Link
             to="/contact"
             className="flex flex-col items-center justify-center gap-1 py-2 rounded-lg bg-accent text-accent-foreground"

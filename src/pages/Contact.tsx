@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { openWhatsApp } from "@/lib/whatsapp";
 import { 
   Phone, 
   Mail, 
@@ -92,8 +93,6 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'm%20interested%20in%20booking%20a%20stay%20at%20The%20Woodpecker%20Inn.";
-
   const handleWhatsAppChat = () => {
     const lines = [
       "Hi! I'd like to book a stay at The Woodpecker Inn.",
@@ -106,8 +105,7 @@ const Contact = () => {
       formData.guests && `Guests: ${formData.guests}`,
       formData.message && `Notes: ${formData.message}`,
     ].filter(Boolean).join("\n");
-    const url = `https://wa.me/919317224562?text=${encodeURIComponent(lines)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    openWhatsApp("919317224562", lines);
   };
 
   return (
@@ -171,11 +169,10 @@ const Contact = () => {
                   </div>
                 </a>
 
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"
+                <button
+                  type="button"
+                  onClick={() => openWhatsApp("919317224562", "Hi! I'm interested in booking a stay at The Woodpecker Inn.")}
+                  className="w-full text-left flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-full bg-pine/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pine/20 transition-colors">
                     <MessageCircle className="w-5 h-5 text-pine" />
@@ -185,7 +182,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">Quick responses via WhatsApp</p>
                     <p className="text-sm text-muted-foreground/70">Tap to chat with us</p>
                   </div>
-                </a>
+                </button>
 
                 <a
                   href="mailto:support@thewoodpeckerinn.in"

@@ -1,8 +1,11 @@
 import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Sunrise, Sun, Moon, Coffee, Leaf, UtensilsCrossed } from "lucide-react";
-import cafeImage from "@/assets/cafe-view.jpg";
-import cuisineImage from "@/assets/local-cuisine.jpg";
+import cafeImageAsset from "@/assets/cafe-view.png.asset.json";
+import cuisineImageAsset from "@/assets/cafe-interior.jpg.asset.json";
+
+const cafeImage = cafeImageAsset.url;
+const cuisineImage = cuisineImageAsset.url;
 
 const menuSections = [
   {

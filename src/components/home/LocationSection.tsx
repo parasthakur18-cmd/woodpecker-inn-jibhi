@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { Phone, MessageCircle, Calendar, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export const LocationSection = () => {
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'd%20like%20directions%20to%20The%20Woodpecker%20Inn.";
+  const handleWhatsApp = () =>
+    openWhatsApp("919317224562", "Hi! I'd like directions to The Woodpecker Inn.");
   const directionsLink = "https://www.google.com/maps/dir/?api=1&destination=The+Woodpecker+Inn,+Jibhi,+Himachal+Pradesh";
 
   return (
@@ -24,11 +26,11 @@ export const LocationSection = () => {
             <a href="tel:+919317224562">
               <Button variant="forest" size="lg"><Phone className="w-4 h-4" /> Call</Button>
             </a>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <button type="button" onClick={handleWhatsApp}>
               <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                 <MessageCircle className="w-4 h-4" /> WhatsApp
               </Button>
-            </a>
+            </button>
             <a href={directionsLink} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                 <Navigation className="w-4 h-4" /> Directions

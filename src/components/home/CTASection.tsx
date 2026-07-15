@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Phone, Calendar, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export const CTASection = () => {
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'm%20interested%20in%20booking%20a%20stay%20at%20The%20Woodpecker%20Inn.";
+  const handleWhatsApp = () =>
+    openWhatsApp("919317224562", "Hi! I'm interested in booking a stay at The Woodpecker Inn.");
 
   return (
     <section className="section-padding bg-gradient-pine text-snow">
@@ -36,12 +38,12 @@ export const CTASection = () => {
                 +91 93172 24562
               </Button>
             </a>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <Button variant="heroOutline" size="xl">
+            <button type="button" onClick={handleWhatsApp}>
+              <Button variant="heroOutline" size="xl" asChild={false}>
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
               </Button>
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
