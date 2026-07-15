@@ -38,12 +38,12 @@ export const CTASection = () => {
                 +91 93172 24562
               </Button>
             </a>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <Button variant="heroOutline" size="xl">
+            <button type="button" onClick={handleWhatsApp}>
+              <Button variant="heroOutline" size="xl" asChild={false}>
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
               </Button>
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>

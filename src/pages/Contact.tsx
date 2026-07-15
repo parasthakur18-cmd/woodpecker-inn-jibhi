@@ -92,8 +92,6 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'm%20interested%20in%20booking%20a%20stay%20at%20The%20Woodpecker%20Inn.";
-
   const handleWhatsAppChat = () => {
     const lines = [
       "Hi! I'd like to book a stay at The Woodpecker Inn.",
@@ -106,8 +104,7 @@ const Contact = () => {
       formData.guests && `Guests: ${formData.guests}`,
       formData.message && `Notes: ${formData.message}`,
     ].filter(Boolean).join("\n");
-    const url = `https://wa.me/919317224562?text=${encodeURIComponent(lines)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    openWhatsApp("919317224562", lines);
   };
 
   return (
