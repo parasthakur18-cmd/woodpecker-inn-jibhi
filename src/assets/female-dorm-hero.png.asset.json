@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "58712347-f0a7-4824-9725-680dfb25a69a",
+  "asset_id": "092377d3-7b3e-4ea2-b1b3-b0104663e7bd",
   "project_id": "19f35c2e-45aa-40ad-8b44-c02d089b8932",
-  "url": "/__l5e/assets-v1/58712347-f0a7-4824-9725-680dfb25a69a/female-dorm-hero.png",
-  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/58712347-f0a7-4824-9725-680dfb25a69a/female-dorm-hero.png",
-  "original_filename": "female-dorm-hero.png",
-  "size": 1022641,
-  "content_type": "image/png",
-  "created_at": "2026-07-15T07:25:08Z"
+  "url": "/__l5e/assets-v1/092377d3-7b3e-4ea2-b1b3-b0104663e7bd/female-dorm-hero.webp",
+  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/092377d3-7b3e-4ea2-b1b3-b0104663e7bd/female-dorm-hero.webp",
+  "original_filename": "female-dorm-hero.webp",
+  "size": 54834,
+  "content_type": "image/webp",
+  "created_at": "2026-07-15T07:33:21Z"
 }
