@@ -199,7 +199,7 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href="https://instagram.com/thewoodpeckerinn"
+                  href="https://www.instagram.com/thewoodpeckerinnjibhi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Bed, Users, Wifi, Lock, Coffee, Check } from "lucide-react";
-import cafeImage from "@/assets/cafe-view.jpg";
+const dormImage = "/rooms/mixed-dorm-hero.webp";
 
 const features = [
   { icon: Bed, title: "6 Beds Per Room", desc: "Bunk-style beds with fresh linens & personal reading lights." },
@@ -65,7 +65,7 @@ const Dormitory = () => {
             >
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-elevated">
                 <img
-                  src={cafeImage}
+                  src={dormImage}
                   alt="Dormitory at The Woodpecker Inn, Jibhi"
                   className="w-full h-full object-cover"
                 />

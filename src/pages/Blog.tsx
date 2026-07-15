@@ -157,7 +157,7 @@ const Blog = () => {
             <p className="body-regular text-muted-foreground mb-4">
               More stories coming soon. Follow us on Instagram for daily updates.
             </p>
-            <a href="https://instagram.com/thewoodpeckerinn" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/thewoodpeckerinnjibhi/" target="_blank" rel="noopener noreferrer">
               <span className="text-primary font-semibold story-link inline-flex items-center gap-2">
                 Follow @thewoodpeckerinn <ArrowRight className="w-4 h-4" />
               </span>
