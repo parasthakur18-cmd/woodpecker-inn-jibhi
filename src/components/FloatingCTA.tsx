@@ -1,9 +1,11 @@
 import { Phone, MessageCircle, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 export const FloatingCTA = () => {
-  const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'd%20like%20to%20know%20about%20availability%20at%20The%20Woodpecker%20Inn%2C%20Jibhi.";
+  const handleWhatsApp = () =>
+    openWhatsApp("919317224562", "Hi! I'd like to know about availability at The Woodpecker Inn, Jibhi.");
 
   return (
     <>
