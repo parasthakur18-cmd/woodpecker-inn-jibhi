@@ -23,15 +23,14 @@ export const FloatingCTA = () => {
         >
           <Phone className="w-5 h-5" />
         </a>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={handleWhatsApp}
           aria-label="WhatsApp"
           className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-elevated hover:scale-110 transition-transform"
         >
           <MessageCircle className="w-5 h-5" />
-        </a>
+        </button>
         <Link
           to="/contact"
           aria-label="Book Now"
