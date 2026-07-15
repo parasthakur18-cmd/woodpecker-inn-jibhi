@@ -11,6 +11,8 @@ import double2 from "@/assets/double-balcony-2.png.asset.json";
 import kingHero from "@/assets/king-balcony-hero.png.asset.json";
 import king2 from "@/assets/king-balcony-2.png.asset.json";
 import queenBalconyHero from "@/assets/queen-balcony-hero.png.asset.json";
+import quadHero from "@/assets/classic-quadruple-hero.png.asset.json";
+import quad2 from "@/assets/classic-quadruple-2.png.asset.json";
 
 export type RoomHighlight = { icon: string; label: string };
 
@@ -197,18 +199,47 @@ export const rooms: Room[] = [
   {
     slug: "classic-quadruple",
     name: "Classic Quadruple Room",
-    tagline: "Spacious room made for families and small groups",
+    tagline:
+      "Spacious and comfortable accommodation, perfect for families and small groups looking to enjoy a memorable stay in the beautiful mountains of Jibhi.",
     description:
-      "Extra floor space and four beds for families or groups of friends exploring Jibhi together.",
-    image: roomFamily,
+      "Extra floor space and multiple beds for families or groups of friends exploring Jibhi together.",
+    longDescription:
+      "Our Classic Quadruple Room is designed for families and small groups who want to stay together while enjoying the peaceful surroundings of Jibhi. With comfortable bedding, ample space, beautiful mountain views, and essential modern amenities, it offers a relaxing and memorable mountain stay.",
+    image: quadHero.url,
+    heroImage: quadHero.url,
+    gallery: [quad2.url],
     inventory: 1,
     inventoryLabel: "1 Room",
     capacity: "4 Guests",
-    bedType: "4 Beds",
+    bedType: "Multiple Beds",
     size: "400 sq ft",
     startingPrice: "₹3,499",
     badges: ["Mountain View", "Free Wi-Fi", "Attached Bathroom"],
-    features: ["Four beds", "Extra floor space", "Mountain view", "Complimentary breakfast for all"],
+    features: ["Multiple beds", "Extra floor space", "Mountain & valley view", "Complimentary breakfast for all"],
+    highlights: [
+      { icon: "users", label: "Up to 4 Guests" },
+      { icon: "bed", label: "Comfortable Beds" },
+      { icon: "mountain", label: "Mountain & Valley View" },
+      { icon: "wifi", label: "Complimentary High-Speed Wi-Fi" },
+      { icon: "bath", label: "Attached Private Bathroom" },
+      { icon: "flame", label: "24×7 Hot & Cold Water" },
+    ],
+    amenities: [
+      "Comfortable Beds",
+      "Spacious Room",
+      "Mountain & Valley View",
+      "Attached Private Bathroom",
+      "Western Toilet",
+      "24×7 Hot & Cold Water",
+      "Complimentary High-Speed Wi-Fi",
+      "Fresh Linen & Towels",
+      "Complimentary Drinking Water",
+      "Charging Points",
+      "Daily Housekeeping",
+      "Large Windows with Natural Light",
+    ],
+    checkIn: "12:00 PM",
+    checkOut: "11:00 AM",
   },
   {
     slug: "mixed-dorm",
