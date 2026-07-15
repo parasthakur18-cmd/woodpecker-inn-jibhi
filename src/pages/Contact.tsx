@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { openWhatsApp } from "@/lib/whatsapp";
 import { 
   Phone, 
   Mail, 
@@ -168,11 +169,10 @@ const Contact = () => {
                   </div>
                 </a>
 
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"
+                <button
+                  type="button"
+                  onClick={() => openWhatsApp("919317224562", "Hi! I'm interested in booking a stay at The Woodpecker Inn.")}
+                  className="w-full text-left flex items-start gap-4 p-4 rounded-xl bg-pine/5 hover:bg-pine/10 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-full bg-pine/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pine/20 transition-colors">
                     <MessageCircle className="w-5 h-5 text-pine" />
@@ -182,7 +182,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">Quick responses via WhatsApp</p>
                     <p className="text-sm text-muted-foreground/70">Tap to chat with us</p>
                   </div>
-                </a>
+                </button>
 
                 <a
                   href="mailto:support@thewoodpeckerinn.in"
