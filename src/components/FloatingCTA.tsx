@@ -50,15 +50,14 @@ export const FloatingCTA = () => {
             <Phone className="w-5 h-5 text-primary" />
             <span className="text-[11px] font-medium text-primary">Call</span>
           </a>
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={handleWhatsApp}
             className="flex flex-col items-center justify-center gap-1 py-2 rounded-lg hover:bg-[#25D366]/10 transition-colors"
           >
             <MessageCircle className="w-5 h-5 text-[#25D366]" />
             <span className="text-[11px] font-medium text-[#25D366]">WhatsApp</span>
-          </a>
+          </button>
           <Link
             to="/contact"
             className="flex flex-col items-center justify-center gap-1 py-2 rounded-lg bg-accent text-accent-foreground"
