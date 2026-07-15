@@ -2,49 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Bed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import roomLuxury from "@/assets/room-luxury.jpg";
-import roomValley from "@/assets/room-valley.jpg";
-import duplexRoom from "@/assets/duplex-room.jpg.asset.json";
-import cafeImage from "@/assets/cafe-view.jpg";
-
-const rooms = [
-  {
-    slug: "private-deluxe",
-    name: "Private Deluxe Room",
-    tagline: "Cozy wooden interiors, private balcony",
-    price: "From ₹2,499 / night",
-    capacity: "2 guests",
-    image: roomLuxury,
-    features: ["Private Balcony", "Mountain View", "Attached Bathroom"],
-  },
-  {
-    slug: "mountain-view",
-    name: "Mountain View Room",
-    tagline: "The best view in the house",
-    price: "From ₹2,999 / night",
-    capacity: "2 guests",
-    image: roomValley,
-    features: ["Panoramic Views", "King Bed", "Sunrise Balcony"],
-  },
-  {
-    slug: "duplex-balcony",
-    name: "Duplex Room with Balcony",
-    tagline: "Two-level wooden loft with private mountain balcony",
-    price: "From ₹4,000 / night",
-    capacity: "4 guests",
-    image: duplexRoom.url,
-    features: ["Private Balcony", "Loft Bedroom", "Mountain View"],
-  },
-  {
-    slug: "dormitory",
-    name: "Dormitory Bed",
-    tagline: "Backpacker-friendly & social",
-    price: "From ₹599 / bed",
-    capacity: "6 beds",
-    image: cafeImage,
-    features: ["Shared Space", "Lockers", "Community Vibes"],
-  },
-];
+import { rooms } from "@/data/rooms";
 
 export const RoomsSection = () => {
   return (
@@ -62,46 +20,54 @@ export const RoomsSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rooms.map((room, i) => (
             <motion.article
               key={room.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: i * 0.06 }}
               className="group bg-card rounded-2xl overflow-hidden shadow-card border border-border/40 hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
-              <div className="aspect-[4/3] overflow-hidden bg-mist">
+              <div className="relative aspect-[4/3] overflow-hidden bg-mist">
                 <img
                   src={room.image}
                   alt={room.name}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <h3 className="heading-card text-primary mb-1">{room.name}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{room.tagline}</p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {room.features.map((f) => (
-                    <span key={f} className="text-[11px] px-2.5 py-1 bg-primary/6 text-primary rounded-full">
-                      {f}
+                <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 max-w-[calc(100%-1.5rem)]">
+                  {room.badges.slice(0, 2).map((b) => (
+                    <span key={b} className="text-[10px] font-medium px-2 py-1 rounded-full bg-snow/95 backdrop-blur text-primary shadow-sm">
+                      {b}
                     </span>
                   ))}
                 </div>
+                <span className="absolute bottom-3 right-3 text-[10px] font-medium px-2 py-1 rounded-full bg-primary text-primary-foreground">
+                  Only {room.inventoryLabel} left
+                </span>
+              </div>
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="heading-card text-primary mb-1">{room.name}</h3>
+                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{room.tagline}</p>
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
                   <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" />{room.capacity}</span>
-                  <span className="flex items-center gap-1"><Bed className="w-3.5 h-3.5" />{room.slug === "dormitory" ? "6 beds" : "1 room"}</span>
+                  <span className="flex items-center gap-1"><Bed className="w-3.5 h-3.5" />{room.bedType}</span>
                 </div>
                 <div className="mt-auto pt-4 border-t border-border/50 flex items-end justify-between gap-2">
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Starts at</p>
-                    <p className="font-heading font-bold text-primary text-sm">{room.price}</p>
+                    <p className="font-heading font-bold text-primary text-sm">From {room.startingPrice} / night</p>
                   </div>
-                  <Link to="/contact">
-                    <Button size="sm" variant="forest">Book</Button>
-                  </Link>
+                  <div className="flex gap-2">
+                    <Link to={`/rooms/${room.slug}`}>
+                      <Button size="sm" variant="outline">Details</Button>
+                    </Link>
+                    <Link to="/contact">
+                      <Button size="sm" variant="forest">Book</Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.article>
