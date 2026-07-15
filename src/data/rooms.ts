@@ -89,18 +89,27 @@ export const rooms: Room[] = [
   {
     slug: "double-balcony",
     name: "Double Room with Balcony",
-    tagline: "Comfortable double room with your own balcony",
+    tagline:
+      "Enjoy a comfortable mountain stay with a private balcony overlooking the beautiful surroundings of Jibhi.",
     description:
       "A cozy double room with a private balcony to soak in the pine-scented air and mountain silence.",
-    image: duplexRoom.url,
+    longDescription:
+      "Relax in our Double Room with Balcony, thoughtfully designed for couples and travelers looking for a peaceful stay in the heart of Jibhi. Enjoy the comfort of a spacious double bed, a private balcony with refreshing mountain views, modern amenities, and a cozy atmosphere that makes every stay memorable.",
+    image: doubleHero.url,
+    heroImage: doubleHero.url,
+    gallery: [double2.url],
     inventory: 2,
     inventoryLabel: "2 Rooms",
     capacity: "2 Guests",
-    bedType: "Double Bed",
+    bedType: "1 Double Bed",
     size: "240 sq ft",
     startingPrice: "₹2,899",
     badges: ["Balcony", "Mountain View", "Free Wi-Fi", "Attached Bathroom"],
     features: ["Private balcony", "Double bed", "Mountain view", "Room heater", "Complimentary breakfast"],
+    highlights: defaultHighlights,
+    amenities: defaultAmenities,
+    checkIn: "12:00 PM",
+    checkOut: "11:00 AM",
   },
   {
     slug: "king-balcony",
