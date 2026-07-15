@@ -166,7 +166,9 @@ export const rooms: Room[] = [
     tagline: "Queen bed with your own private balcony",
     description:
       "A cozy queen room with a private balcony to enjoy slow mornings and a cup of chai in the mountains.",
-    image: duplexRoom.url,
+    image: queenBalconyHero.url,
+    heroImage: queenBalconyHero.url,
+    gallery: [],
     inventory: 1,
     inventoryLabel: "1 Room",
     capacity: "2 Guests",
