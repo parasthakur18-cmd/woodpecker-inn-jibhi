@@ -94,6 +94,22 @@ const Contact = () => {
 
   const whatsappLink = "https://wa.me/919317224562?text=Hi!%20I'm%20interested%20in%20booking%20a%20stay%20at%20The%20Woodpecker%20Inn.";
 
+  const handleWhatsAppChat = () => {
+    const lines = [
+      "Hi! I'd like to book a stay at The Woodpecker Inn.",
+      "",
+      formData.name && `Name: ${formData.name}`,
+      formData.phone && `Phone: ${formData.phone}`,
+      formData.email && `Email: ${formData.email}`,
+      formData.checkIn && `Check-in: ${formData.checkIn}`,
+      formData.checkOut && `Check-out: ${formData.checkOut}`,
+      formData.guests && `Guests: ${formData.guests}`,
+      formData.message && `Notes: ${formData.message}`,
+    ].filter(Boolean).join("\n");
+    const url = `https://wa.me/919317224562?text=${encodeURIComponent(lines)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
