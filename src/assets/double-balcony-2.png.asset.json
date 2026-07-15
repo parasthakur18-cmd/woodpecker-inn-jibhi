@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "877e1115-ae9a-437a-a0cf-b04cb594ae69",
+  "asset_id": "e6743b55-c84d-408c-b2e8-c0b36376883f",
   "project_id": "19f35c2e-45aa-40ad-8b44-c02d089b8932",
-  "url": "/__l5e/assets-v1/877e1115-ae9a-437a-a0cf-b04cb594ae69/double-balcony-2.png",
-  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/877e1115-ae9a-437a-a0cf-b04cb594ae69/double-balcony-2.png",
-  "original_filename": "double-balcony-2.png",
-  "size": 2722961,
-  "content_type": "image/png",
-  "created_at": "2026-07-15T06:56:30Z"
+  "url": "/__l5e/assets-v1/e6743b55-c84d-408c-b2e8-c0b36376883f/double-balcony-2.webp",
+  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/e6743b55-c84d-408c-b2e8-c0b36376883f/double-balcony-2.webp",
+  "original_filename": "double-balcony-2.webp",
+  "size": 316066,
+  "content_type": "image/webp",
+  "created_at": "2026-07-15T07:33:16Z"
 }

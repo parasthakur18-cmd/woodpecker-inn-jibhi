@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "e6cdc3b9-37e9-4ac4-9e90-9a68ecdb252a",
+  "asset_id": "59147846-8d0f-4977-8b9e-47b8d8791373",
   "project_id": "19f35c2e-45aa-40ad-8b44-c02d089b8932",
-  "url": "/__l5e/assets-v1/e6cdc3b9-37e9-4ac4-9e90-9a68ecdb252a/superior-queen-hero.png",
-  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/e6cdc3b9-37e9-4ac4-9e90-9a68ecdb252a/superior-queen-hero.png",
-  "original_filename": "superior-queen-hero.png",
-  "size": 2140728,
-  "content_type": "image/png",
-  "created_at": "2026-07-15T07:02:24Z"
+  "url": "/__l5e/assets-v1/59147846-8d0f-4977-8b9e-47b8d8791373/queen-balcony-hero.webp",
+  "r2_key": "a/v1/19f35c2e-45aa-40ad-8b44-c02d089b8932/59147846-8d0f-4977-8b9e-47b8d8791373/queen-balcony-hero.webp",
+  "original_filename": "queen-balcony-hero.webp",
+  "size": 131180,
+  "content_type": "image/webp",
+  "created_at": "2026-07-15T07:33:29Z"
 }
