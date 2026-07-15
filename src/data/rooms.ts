@@ -10,6 +10,7 @@ import doubleHero from "@/assets/double-balcony-hero.png.asset.json";
 import double2 from "@/assets/double-balcony-2.png.asset.json";
 import kingHero from "@/assets/king-balcony-hero.png.asset.json";
 import king2 from "@/assets/king-balcony-2.png.asset.json";
+import superiorQueenHero from "@/assets/superior-queen-hero.png.asset.json";
 
 export type RoomHighlight = { icon: string; label: string };
 
