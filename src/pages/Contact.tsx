@@ -369,6 +369,22 @@ const Contact = () => {
                     )}
                   </Button>
 
+                  <div className="relative flex items-center py-1">
+                    <div className="flex-grow border-t border-border"></div>
+                    <span className="flex-shrink mx-3 text-xs uppercase tracking-wider text-muted-foreground">or</span>
+                    <div className="flex-grow border-t border-border"></div>
+                  </div>
+
+                  <Button
+                    type="button"
+                    size="xl"
+                    onClick={handleWhatsAppChat}
+                    className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Chat on WhatsApp
+                  </Button>
+
                   <p className="text-xs text-muted-foreground text-center">
                     We'll confirm availability and pricing within 24 hours.
                   </p>
