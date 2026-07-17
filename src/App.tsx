@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Dormitory from "./pages/Dormitory";
 import Blog from "./pages/Blog";
+import Login from "./pages/Login";
+import OAuthConsent from "./pages/OAuthConsent";
 import { Privacy, Terms, Cancellation } from "./pages/Policies";
 
 const queryClient = new QueryClient();
