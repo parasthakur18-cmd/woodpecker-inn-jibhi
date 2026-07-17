@@ -53,6 +53,84 @@ export type Database = {
         }
         Relationships: []
       }
+      website_leads: {
+        Row: {
+          browser: string | null
+          check_in_date: string | null
+          check_out_date: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          device_type: string | null
+          enquiry_source: string | null
+          guest_name: string
+          id: string
+          mobile_number: string
+          notes: string | null
+          operating_system: string | null
+          page_url: string | null
+          property_name: string
+          referrer: string | null
+          room_type: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          website: string
+        }
+        Insert: {
+          browser?: string | null
+          check_in_date?: string | null
+          check_out_date?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          enquiry_source?: string | null
+          guest_name: string
+          id?: string
+          mobile_number: string
+          notes?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          property_name?: string
+          referrer?: string | null
+          room_type?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string
+        }
+        Update: {
+          browser?: string | null
+          check_in_date?: string | null
+          check_out_date?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          enquiry_source?: string | null
+          guest_name?: string
+          id?: string
+          mobile_number?: string
+          notes?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          property_name?: string
+          referrer?: string | null
+          room_type?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -61,7 +139,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      lead_status: "New" | "Contacted" | "Follow-up" | "Confirmed" | "Lost"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -188,6 +266,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      lead_status: ["New", "Contacted", "Follow-up", "Confirmed", "Lost"],
+    },
   },
 } as const
