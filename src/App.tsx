@@ -14,6 +14,7 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import AdminWebsiteLeads from "./pages/AdminWebsiteLeads";
 import Dormitory from "./pages/Dormitory";
 import Blog from "./pages/Blog";
 import Login from "./pages/Login";
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/website-leads" element={<AdminWebsiteLeads />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cancellation" element={<Cancellation />} />
