@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://ifnvatfypahnazxckwxf.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "woodpecker-inn-mcp",
+      "version": "0.1.0",
+      "title": "The Woodpecker Inn"
+    },
+    "tools": [
+      {
+        "name": "get_hotel_info",
+        "title": "Get hotel info",
+        "description": "Returns The Woodpecker Inn's location, contact details, room types, and amenities.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_booking_inquiry",
+        "title": "Create a booking inquiry",
+        "description": "Submit a new booking inquiry for The Woodpecker Inn on behalf of the signed-in user. Staff will follow up via email/WhatsApp.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Guest full name"
+            },
+            "phone": {
+              "type": "string",
+              "minLength": 6,
+              "description": "Contact phone with country code"
+            },
+            "checkIn": {
+              "type": "string",
+              "description": "Check-in date, YYYY-MM-DD"
+            },
+            "checkOut": {
+              "type": "string",
+              "description": "Check-out date, YYYY-MM-DD"
+            },
+            "guests": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "description": "Number of guests"
+            },
+            "message": {
+              "type": "string",
+              "description": "Special requests, optional"
+            }
+          },
+          "required": [
+            "name",
+            "phone",
+            "checkIn",
+            "checkOut",
+            "guests"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
