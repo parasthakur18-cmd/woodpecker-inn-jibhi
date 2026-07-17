@@ -4,7 +4,8 @@ import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, Calendar, Users, MessageCircle, RefreshCw } from "lucide-react";
+import { Phone, Mail, Calendar, Users, MessageCircle, RefreshCw, TrendingUp, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface BookingInquiry {
   id: string;
