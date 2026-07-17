@@ -54,74 +54,50 @@ const LeadCapturePopup = ({ onClose }: Props) => {
   const [form, setForm] = useState<LeadForm>({
     guest_name: "",
     mobile_number: "",
+    email: "",
     check_in_date: "",
     check_out_date: "",
     room_type: "",
+    adults: "2",
+    children: "0",
   });
-  const [submitting, setSubmitting] = useState(false);
+
+  const { submit, loading } = useWebsiteLead({
+    property_name: ACTIVE_PROPERTY.propertyName,
+    website: `https://${ACTIVE_PROPERTY.website}`,
+  });
 
   const update = <K extends keyof LeadForm>(key: K, value: LeadForm[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (submitting) return;
+    if (loading) return;
 
-    const parsed = leadSchema.safeParse(form);
-    if (!parsed.success) {
-      const first = parsed.error.issues[0];
-      toast.error(first?.message ?? "Please fill the required fields");
+    const res = await submit({
+      guest_name: form.guest_name,
+      mobile_number: form.mobile_number,
+      email: form.email,
+      adults: Number(form.adults) || 2,
+      children: Number(form.children) || 0,
+      room_type: form.room_type,
+      check_in: form.check_in_date,
+      check_out: form.check_out_date,
+    });
+
+    if (!res) {
+      toast.error(
+        "We couldn't submit your enquiry at the moment. Please try again."
+      );
       return;
     }
 
-    setSubmitting(true);
-    try {
-      const meta = collectClientMeta();
-      const { error } = await supabase.from("website_leads").insert({
-        property_name: ACTIVE_PROPERTY.propertyName,
-        website: ACTIVE_PROPERTY.website,
-        guest_name: parsed.data.guest_name,
-        mobile_number: parsed.data.mobile_number,
-        check_in_date: parsed.data.check_in_date || null,
-        check_out_date: parsed.data.check_out_date || null,
-        room_type: parsed.data.room_type || null,
-        enquiry_source: "popup",
-        page_url: meta.page_url,
-        referrer: meta.referrer,
-        utm_source: meta.utm_source,
-        utm_medium: meta.utm_medium,
-        utm_campaign: meta.utm_campaign,
-        device_type: meta.device_type,
-        browser: meta.browser,
-        operating_system: meta.operating_system,
-        status: "New",
-      });
-
-      if (error) {
-        if (
-          error.message?.includes("duplicate_submission") ||
-          (error as any).code === "P0001"
-        ) {
-          toast.error(
-            "Looks like you just sent an enquiry. Please wait a minute before trying again."
-          );
-        } else {
-          toast.error("Could not save your enquiry. Please try again.");
-        }
-        setSubmitting(false);
-        return;
-      }
-
-      toast.success("Enquiry saved. Opening WhatsApp…");
-      openWhatsApp(
-        ACTIVE_PROPERTY.whatsappNumber,
-        buildWhatsAppMessage(parsed.data)
-      );
-      onClose();
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-      setSubmitting(false);
-    }
+    toast.success("Enquiry received. Opening WhatsApp…");
+    openWhatsApp(
+      ACTIVE_PROPERTY.whatsappNumber,
+      buildWhatsAppMessage(form)
+    );
+    onClose();
   };
 
   return (
