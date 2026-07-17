@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import Dormitory from "./pages/Dormitory";
 import Blog from "./pages/Blog";
+import Login from "./pages/Login";
+import OAuthConsent from "./pages/OAuthConsent";
 import { Privacy, Terms, Cancellation } from "./pages/Policies";
 
 const queryClient = new QueryClient();
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cancellation" element={<Cancellation />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
