@@ -88,6 +88,29 @@ const Admin = () => {
 
       <section className="section-padding bg-snow">
         <div className="container-luxury">
+          <div className="mb-10">
+            <p className="label-caps text-accent mb-2">Marketing</p>
+            <Link
+              to="/admin/website-leads"
+              className="block bg-gradient-pine text-snow rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow group"
+            >
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-medium mb-1">
+                    Website Leads
+                  </h3>
+                  <p className="text-snow/80 text-sm">
+                    Popup enquiries, dashboard, filters, notes & CSV export
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <TrendingUp className="w-8 h-8 text-snow/80" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </div>
+
           <div className="flex justify-between items-center mb-8">
             <h2 className="heading-section text-pine">All Leads</h2>
             <Button variant="pine" onClick={fetchInquiries} disabled={loading}>
