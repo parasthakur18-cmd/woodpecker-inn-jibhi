@@ -1,6 +1,9 @@
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
-const HOSTEZEE_URL = "https://hostezee.in/api/v1/website-leads";
+// TEMP: pointing to Replit dev endpoint for testing. Switch back to
+// https://hostezee.in/api/v1/website-leads once production is updated.
+const HOSTEZEE_URL =
+  "https://73c9ca56-4ac0-4249-9b70-9ee45e9faadb-00-7yjx6k9uew15.janeway.replit.dev/api/v1/website-leads";
 const TIMEOUT_MS = 15000;
 
 Deno.serve(async (req) => {
