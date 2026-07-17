@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, Loader2 } from "lucide-react";
-import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,45 +13,37 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ACTIVE_PROPERTY } from "@/config/properties";
-import { collectClientMeta } from "@/lib/clientMeta";
 import { openWhatsApp } from "@/lib/whatsapp";
+import { useWebsiteLead } from "@/hooks/useWebsiteLead";
 
 interface Props {
   onClose: () => void;
 }
 
-const leadSchema = z.object({
-  guest_name: z
-    .string()
-    .trim()
-    .min(2, "Please enter your name")
-    .max(100, "Name too long"),
-  mobile_number: z
-    .string()
-    .trim()
-    .min(6, "Please enter a valid mobile number")
-    .max(20, "Mobile number too long")
-    .regex(/^[0-9+\-\s()]+$/, "Only digits and + - ( ) allowed"),
-  check_in_date: z.string().optional(),
-  check_out_date: z.string().optional(),
-  room_type: z.string().optional(),
-});
-
-type LeadForm = z.infer<typeof leadSchema>;
+interface LeadForm {
+  guest_name: string;
+  mobile_number: string;
+  email: string;
+  check_in_date: string;
+  check_out_date: string;
+  room_type: string;
+  adults: string;
+  children: string;
+}
 
 const buildWhatsAppMessage = (data: LeadForm) => {
   const parts = [
-    "Hello Team,",
+    "Hello Woodpecker Inn,",
     "",
-    "I would like to enquire about a stay at The Woodpecker Inn.",
+    "I would like to enquire about accommodation.",
     "",
     `Name: ${data.guest_name}`,
-    `Phone: ${data.mobile_number}`,
+    `Mobile: ${data.mobile_number}`,
+    `Room: ${data.room_type || "—"}`,
     `Check-in: ${data.check_in_date || "—"}`,
     `Check-out: ${data.check_out_date || "—"}`,
-    `Room Type: ${data.room_type || "—"}`,
-    "",
-    "Please let me know the availability and the best price.",
+    `Adults: ${data.adults || "2"}`,
+    `Children: ${data.children || "0"}`,
     "",
     "Thank you.",
   ];
