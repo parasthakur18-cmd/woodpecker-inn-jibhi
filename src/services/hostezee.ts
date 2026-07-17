@@ -1,5 +1,7 @@
 // Hostezee Website Lead API integration.
-// All calls to Hostezee must go through this module — UI code must never call fetch directly.
+// The Hostezee API key is stored server-side; the browser only calls our
+// internal edge function proxy. UI code must never call fetch directly.
+import { supabase } from "@/integrations/supabase/client";
 
 export interface WebsiteLeadRequest {
   property_name: string;
@@ -43,21 +45,7 @@ export interface WebsiteLeadError {
   message: string;
 }
 
-const REQUEST_TIMEOUT_MS = 15000;
-
-const getConfig = (): { url: string; key: string } | WebsiteLeadError => {
-  const url = import.meta.env.VITE_HOSTEZEE_API_URL as string | undefined;
-  const key = import.meta.env.VITE_HOSTEZEE_API_KEY as string | undefined;
-  if (!url || !key) {
-    return {
-      status: null,
-      code: "config",
-      message:
-        "Hostezee API is not configured. Please set VITE_HOSTEZEE_API_URL and VITE_HOSTEZEE_API_KEY.",
-    };
-  }
-  return { url, key };
-};
+const PROXY_FUNCTION = "hostezee-lead";
 
 const errorFromStatus = (status: number, message?: string): WebsiteLeadError => {
   if (status === 400)
@@ -66,6 +54,8 @@ const errorFromStatus = (status: number, message?: string): WebsiteLeadError => 
     return { status, code: "unauthorized", message: message ?? "Unauthorized." };
   if (status === 403)
     return { status, code: "forbidden", message: message ?? "Forbidden." };
+  if (status === 504)
+    return { status, code: "timeout", message: message ?? "Request timed out." };
   if (status >= 500)
     return { status, code: "server", message: message ?? "Hostezee is temporarily unavailable." };
   return { status, code: "unknown", message: message ?? `Request failed (${status}).` };
@@ -82,50 +72,35 @@ export const submitWebsiteLead = async (
     } as WebsiteLeadError;
   }
 
-  const cfg = getConfig();
-  if ("code" in cfg) throw cfg;
+  const { data, error } = await supabase.functions.invoke<WebsiteLeadResponse>(
+    PROXY_FUNCTION,
+    { body: payload }
+  );
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-  let response: Response;
-  try {
-    response = await fetch(cfg.url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${cfg.key}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    });
-  } catch (err) {
-    clearTimeout(timeout);
-    const aborted = (err as { name?: string })?.name === "AbortError";
+  if (error) {
+    // supabase-js wraps non-2xx as FunctionsHttpError; try to read the body.
+    let body: WebsiteLeadResponse | null = null;
+    const ctx = (error as unknown as { context?: Response }).context;
+    if (ctx && typeof ctx.text === "function") {
+      try {
+        const raw = await ctx.text();
+        body = raw ? (JSON.parse(raw) as WebsiteLeadResponse) : null;
+      } catch {
+        body = null;
+      }
+    }
+    const status = ctx?.status ?? 0;
+    if (status > 0) throw errorFromStatus(status, body?.message);
     throw {
       status: null,
-      code: aborted ? "timeout" : "network",
-      message: aborted
-        ? "The request took too long. Please try again."
-        : "Could not reach Hostezee. Please try again.",
+      code: "network",
+      message: body?.message ?? "Could not reach Hostezee. Please try again.",
     } as WebsiteLeadError;
-  }
-  clearTimeout(timeout);
-
-  let data: WebsiteLeadResponse | null = null;
-  try {
-    data = (await response.json()) as WebsiteLeadResponse;
-  } catch {
-    data = null;
-  }
-
-  if (!response.ok) {
-    throw errorFromStatus(response.status, data?.message);
   }
 
   if (!data || data.success !== true) {
     throw {
-      status: response.status,
+      status: 200,
       code: "unknown",
       message: data?.message ?? "Enquiry could not be submitted.",
     } as WebsiteLeadError;
