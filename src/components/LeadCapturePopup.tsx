@@ -223,9 +223,9 @@ const LeadCapturePopup = ({ onClose }: Props) => {
                 variant="pine"
                 size="lg"
                 className="flex-1"
-                disabled={submitting}
+                disabled={loading}
               >
-                {submitting ? (
+                {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" /> Sending…
                   </>
@@ -240,14 +240,14 @@ const LeadCapturePopup = ({ onClose }: Props) => {
                 variant="outline"
                 size="lg"
                 onClick={onClose}
-                disabled={submitting}
+                disabled={loading}
                 className="flex-1"
               >
                 No Thanks, I'll Browse First
               </Button>
             </div>
             <p className="text-[11px] text-muted-foreground text-center pt-1">
-              By submitting, you agree to be contacted about your enquiry.
+              By loading, you agree to be contacted about your enquiry.
             </p>
           </form>
         </motion.div>
