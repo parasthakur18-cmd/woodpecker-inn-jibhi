@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, Loader2 } from "lucide-react";
-import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,45 +13,37 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ACTIVE_PROPERTY } from "@/config/properties";
-import { collectClientMeta } from "@/lib/clientMeta";
 import { openWhatsApp } from "@/lib/whatsapp";
+import { useWebsiteLead } from "@/hooks/useWebsiteLead";
 
 interface Props {
   onClose: () => void;
 }
 
-const leadSchema = z.object({
-  guest_name: z
-    .string()
-    .trim()
-    .min(2, "Please enter your name")
-    .max(100, "Name too long"),
-  mobile_number: z
-    .string()
-    .trim()
-    .min(6, "Please enter a valid mobile number")
-    .max(20, "Mobile number too long")
-    .regex(/^[0-9+\-\s()]+$/, "Only digits and + - ( ) allowed"),
-  check_in_date: z.string().optional(),
-  check_out_date: z.string().optional(),
-  room_type: z.string().optional(),
-});
-
-type LeadForm = z.infer<typeof leadSchema>;
+interface LeadForm {
+  guest_name: string;
+  mobile_number: string;
+  email: string;
+  check_in_date: string;
+  check_out_date: string;
+  room_type: string;
+  adults: string;
+  children: string;
+}
 
 const buildWhatsAppMessage = (data: LeadForm) => {
   const parts = [
-    "Hello Team,",
+    "Hello Woodpecker Inn,",
     "",
-    "I would like to enquire about a stay at The Woodpecker Inn.",
+    "I would like to enquire about accommodation.",
     "",
     `Name: ${data.guest_name}`,
-    `Phone: ${data.mobile_number}`,
+    `Mobile: ${data.mobile_number}`,
+    `Room: ${data.room_type || "—"}`,
     `Check-in: ${data.check_in_date || "—"}`,
     `Check-out: ${data.check_out_date || "—"}`,
-    `Room Type: ${data.room_type || "—"}`,
-    "",
-    "Please let me know the availability and the best price.",
+    `Adults: ${data.adults || "2"}`,
+    `Children: ${data.children || "0"}`,
     "",
     "Thank you.",
   ];
@@ -64,74 +54,50 @@ const LeadCapturePopup = ({ onClose }: Props) => {
   const [form, setForm] = useState<LeadForm>({
     guest_name: "",
     mobile_number: "",
+    email: "",
     check_in_date: "",
     check_out_date: "",
     room_type: "",
+    adults: "2",
+    children: "0",
   });
-  const [submitting, setSubmitting] = useState(false);
+
+  const { submit, loading } = useWebsiteLead({
+    property_name: ACTIVE_PROPERTY.propertyName,
+    website: `https://${ACTIVE_PROPERTY.website}`,
+  });
 
   const update = <K extends keyof LeadForm>(key: K, value: LeadForm[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (submitting) return;
+    if (loading) return;
 
-    const parsed = leadSchema.safeParse(form);
-    if (!parsed.success) {
-      const first = parsed.error.issues[0];
-      toast.error(first?.message ?? "Please fill the required fields");
+    const res = await submit({
+      guest_name: form.guest_name,
+      mobile_number: form.mobile_number,
+      email: form.email,
+      adults: Number(form.adults) || 2,
+      children: Number(form.children) || 0,
+      room_type: form.room_type,
+      check_in: form.check_in_date,
+      check_out: form.check_out_date,
+    });
+
+    if (!res) {
+      toast.error(
+        "We couldn't submit your enquiry at the moment. Please try again."
+      );
       return;
     }
 
-    setSubmitting(true);
-    try {
-      const meta = collectClientMeta();
-      const { error } = await supabase.from("website_leads").insert({
-        property_name: ACTIVE_PROPERTY.propertyName,
-        website: ACTIVE_PROPERTY.website,
-        guest_name: parsed.data.guest_name,
-        mobile_number: parsed.data.mobile_number,
-        check_in_date: parsed.data.check_in_date || null,
-        check_out_date: parsed.data.check_out_date || null,
-        room_type: parsed.data.room_type || null,
-        enquiry_source: "popup",
-        page_url: meta.page_url,
-        referrer: meta.referrer,
-        utm_source: meta.utm_source,
-        utm_medium: meta.utm_medium,
-        utm_campaign: meta.utm_campaign,
-        device_type: meta.device_type,
-        browser: meta.browser,
-        operating_system: meta.operating_system,
-        status: "New",
-      });
-
-      if (error) {
-        if (
-          error.message?.includes("duplicate_submission") ||
-          (error as any).code === "P0001"
-        ) {
-          toast.error(
-            "Looks like you just sent an enquiry. Please wait a minute before trying again."
-          );
-        } else {
-          toast.error("Could not save your enquiry. Please try again.");
-        }
-        setSubmitting(false);
-        return;
-      }
-
-      toast.success("Enquiry saved. Opening WhatsApp…");
-      openWhatsApp(
-        ACTIVE_PROPERTY.whatsappNumber,
-        buildWhatsAppMessage(parsed.data)
-      );
-      onClose();
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-      setSubmitting(false);
-    }
+    toast.success("Enquiry received. Opening WhatsApp…");
+    openWhatsApp(
+      ACTIVE_PROPERTY.whatsappNumber,
+      buildWhatsAppMessage(form)
+    );
+    onClose();
   };
 
   return (
@@ -257,9 +223,9 @@ const LeadCapturePopup = ({ onClose }: Props) => {
                 variant="pine"
                 size="lg"
                 className="flex-1"
-                disabled={submitting}
+                disabled={loading}
               >
-                {submitting ? (
+                {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" /> Sending…
                   </>
@@ -274,14 +240,14 @@ const LeadCapturePopup = ({ onClose }: Props) => {
                 variant="outline"
                 size="lg"
                 onClick={onClose}
-                disabled={submitting}
+                disabled={loading}
                 className="flex-1"
               >
                 No Thanks, I'll Browse First
               </Button>
             </div>
             <p className="text-[11px] text-muted-foreground text-center pt-1">
-              By submitting, you agree to be contacted about your enquiry.
+              By loading, you agree to be contacted about your enquiry.
             </p>
           </form>
         </motion.div>

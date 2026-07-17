@@ -5,18 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { openWhatsApp } from "@/lib/whatsapp";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Instagram, 
+import { useWebsiteLead } from "@/hooks/useWebsiteLead";
+import { ACTIVE_PROPERTY } from "@/config/properties";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
   MessageCircle,
   Calendar,
   User,
   Users,
-  Send
+  Send,
 } from "lucide-react";
 
 const Contact = () => {
@@ -30,67 +31,73 @@ const Contact = () => {
     guests: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { submit, loading: isSubmitting } = useWebsiteLead({
+    property_name: ACTIVE_PROPERTY.propertyName,
+    website: `https://${ACTIVE_PROPERTY.website}`,
+  });
+
+  const buildWaMessage = () =>
+    [
+      "Hello Woodpecker Inn,",
+      "",
+      "I would like to enquire about accommodation.",
+      "",
+      `Name: ${formData.name}`,
+      `Mobile: ${formData.phone}`,
+      `Room: —`,
+      `Check-in: ${formData.checkIn || "—"}`,
+      `Check-out: ${formData.checkOut || "—"}`,
+      `Adults: ${formData.guests || "2"}`,
+      `Children: 0`,
+      "",
+      "Thank you.",
+    ].join("\n");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    try {
-      // Validate form data
-      if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || 
-          !formData.checkIn || !formData.checkOut || !formData.guests) {
-        throw new Error("Please fill in all required fields");
-      }
+    const guests = parseInt(formData.guests || "0", 10);
+    const res = await submit({
+      guest_name: formData.name,
+      mobile_number: formData.phone,
+      email: formData.email,
+      adults: guests > 0 ? guests : 2,
+      children: 0,
+      check_in: formData.checkIn,
+      check_out: formData.checkOut,
+    });
 
-      // Call edge function to send emails and store inquiry
-      const { data, error } = await supabase.functions.invoke("send-booking-inquiry", {
-        body: {
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          checkIn: formData.checkIn,
-          checkOut: formData.checkOut,
-          guests: parseInt(formData.guests),
-          message: formData.message.trim() || undefined,
-        },
-      });
-
-      if (error) throw error;
-
-      // Open WhatsApp notification for the owner if URL is returned
-      if (data?.whatsappUrl) {
-        window.open(data.whatsappUrl, "_blank", "noopener,noreferrer");
-      }
-
-      toast({
-        title: "Inquiry Sent Successfully! ✨",
-        description: "Check your email for confirmation. We'll respond within 24 hours.",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        checkIn: "",
-        checkOut: "",
-        guests: "",
-        message: "",
-      });
-    } catch (error: any) {
-      console.error("Error submitting inquiry:", error);
+    if (!res) {
       toast({
         title: "Something went wrong",
-        description: error.message || "Please try again or contact us directly.",
+        description:
+          "We couldn't submit your enquiry at the moment. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+
+    openWhatsApp(ACTIVE_PROPERTY.whatsappNumber, buildWaMessage());
+    toast({
+      title: "Enquiry sent ✨",
+      description: "We've opened WhatsApp so you can chat with us directly.",
+    });
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      checkIn: "",
+      checkOut: "",
+      guests: "",
+      message: "",
+    });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleWhatsAppChat = () => {
@@ -104,9 +111,12 @@ const Contact = () => {
       formData.checkOut && `Check-out: ${formData.checkOut}`,
       formData.guests && `Guests: ${formData.guests}`,
       formData.message && `Notes: ${formData.message}`,
-    ].filter(Boolean).join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
     openWhatsApp("919317224562", lines);
   };
+
 
   return (
     <Layout>
